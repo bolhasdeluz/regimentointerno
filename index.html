@@ -307,6 +307,10 @@ function tryStore(){
 }
 
 function toggleMode(){
+  if(!editMode){
+    const pw=prompt("Senha para editar:");
+    if(pw!=="terreiro"){showToast("Senha incorreta");return;}
+  }
   editMode=!editMode;
   document.getElementById("btnEd").classList.toggle("on",editMode);
   document.getElementById("btnEd").textContent=editMode?"👁️ Visualizar":"✏️ Editar";
