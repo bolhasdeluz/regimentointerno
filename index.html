@@ -8,187 +8,195 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--gold:#c4396b;--gold-light:#e8688a;--gold-dim:rgba(196,57,107,.08);--bg:#fff5f7;--surface:#fff;--border:rgba(196,57,107,.15);--text:#2a1a22;--text-dim:rgba(80,30,50,.5)}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}
-header{background:linear-gradient(135deg,#c0405a,#d4607a 60%,#e07a90);padding:16px 20px;box-shadow:0 2px 20px rgba(180,60,90,.25);position:sticky;top:0;z-index:50}
-.hrow{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.htitle{font-family:'Playfair Display',serif;font-size:1.15rem;color:#fff;font-weight:600}
-.hsub{font-family:'Cinzel',serif;font-size:.58rem;color:rgba(255,255,255,.7);letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
-.hbtns{display:flex;gap:6px}
-.pill{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);border-radius:20px;color:rgba(255,255,255,.85);font-family:'DM Sans',sans-serif;font-size:.7rem;padding:4px 12px;cursor:pointer;transition:.2s;white-space:nowrap}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px}
+
+/* HEADER */
+header{background:linear-gradient(135deg,#c0405a,#d4607a 60%,#e07a90);padding:40px 28px 32px;box-shadow:0 2px 20px rgba(180,60,90,.25);text-align:center}
+.logo{font-size:1.5rem;margin-bottom:10px}
+.htitle{font-family:'Playfair Display',serif;font-size:1.6rem;color:#fff;font-weight:600;line-height:1.2}
+.hsub{font-family:'Cinzel',serif;font-size:.62rem;color:rgba(255,255,255,.65);letter-spacing:.16em;text-transform:uppercase;margin-top:6px}
+.hdate{font-family:'DM Sans',sans-serif;font-size:.72rem;color:rgba(255,255,255,.5);margin-top:10px}
+.hbtns{display:flex;gap:8px;justify-content:center;margin-top:16px}
+.pill{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);border-radius:20px;color:rgba(255,255,255,.85);font-family:'DM Sans',sans-serif;font-size:.7rem;padding:5px 14px;cursor:pointer;transition:.2s}
 .pill:hover{background:rgba(255,255,255,.25)}.pill.on{background:rgba(255,255,255,.9);color:var(--gold);font-weight:500}
-.nav{display:flex;gap:3px;padding:10px 20px;background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
-.nav::-webkit-scrollbar{display:none}
-.nb{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.07em;text-transform:uppercase;color:var(--text-dim);padding:4px 10px;border-radius:20px;border:none;background:none;cursor:pointer;white-space:nowrap;transition:.2s}
-.nb:hover{background:var(--gold-dim);color:var(--gold)}.nb.on{background:var(--gold-dim);color:var(--gold);font-weight:600}
-.main{max-width:760px;margin:0 auto;padding:20px 16px}
-.ch-hd{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.ch-icon{font-size:1.2rem;width:28px;text-align:center}
-.ch-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600}
-.ch-lbl{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim)}
-.art{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden}
-.art-hd{display:flex;align-items:flex-start;justify-content:space-between;padding:12px 14px;cursor:pointer;gap:10px}
-.art-sym{font-family:'Cinzel',serif;font-size:.6rem;color:var(--gold);white-space:nowrap;padding-top:1px}
-.art-ttl{font-family:'DM Sans',sans-serif;font-size:.87rem;font-weight:500;flex:1;line-height:1.4}
+
+/* DOCUMENTO */
+.doc{max-width:720px;margin:0 auto;padding:32px 20px 60px}
+
+/* CAPÍTULO */
+.chapter{margin-bottom:8px;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--surface)}
+.ch-toggle{width:100%;display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;background:none;border:none;text-align:left;transition:background .15s}
+.ch-toggle:hover{background:var(--gold-dim)}
+.ch-icon{font-size:1.1rem;width:24px;text-align:center;flex-shrink:0}
+.ch-texts{flex:1}
+.ch-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--text);line-height:1.2}
+.ch-lbl{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-top:2px}
+.ch-chev{font-size:.8rem;color:var(--text-dim);transition:transform .2s;flex-shrink:0}
+.ch-chev.on{transform:rotate(90deg)}
+
+/* ARTIGOS dentro do capítulo */
+.ch-body{display:none;border-top:1px solid var(--border)}
+.ch-body.on{display:block}
+
+.art{border-bottom:1px solid var(--border)}
+.art:last-child{border-bottom:none}
+.art-toggle{width:100%;display:flex;align-items:flex-start;gap:10px;padding:12px 18px 12px 46px;cursor:pointer;background:none;border:none;text-align:left;transition:background .15s}
+.art-toggle:hover{background:var(--gold-dim)}
+.art-sym{font-family:'Cinzel',serif;font-size:.58rem;color:var(--gold);white-space:nowrap;padding-top:2px;flex-shrink:0}
+.art-ttl{font-family:'DM Sans',sans-serif;font-size:.86rem;font-weight:500;color:var(--text);flex:1;line-height:1.4}
 .art-meta{display:flex;align-items:center;gap:5px;flex-shrink:0}
-.upd{background:linear-gradient(135deg,#fffbe8,#fff5d0);border:1px solid rgba(196,160,0,.3);color:#8c6400;font-family:'Cinzel',serif;font-size:.55rem;padding:1px 7px;border-radius:20px;white-space:nowrap}
-.edbtn{background:none;border:1px solid var(--border);border-radius:5px;color:var(--text-dim);font-size:.68rem;padding:2px 8px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s}
+.upd{background:linear-gradient(135deg,#fffbe8,#fff5d0);border:1px solid rgba(196,160,0,.3);color:#8c6400;font-family:'Cinzel',serif;font-size:.52rem;padding:1px 6px;border-radius:20px;white-space:nowrap}
+.art-chev{font-size:.7rem;color:var(--text-dim);transition:transform .2s}
+.art-chev.on{transform:rotate(90deg)}
+.edbtn{background:none;border:1px solid var(--border);border-radius:5px;color:var(--text-dim);font-size:.65rem;padding:2px 7px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s}
 .edbtn:hover{border-color:var(--gold);color:var(--gold)}
-.chev{transition:transform .2s;color:var(--text-dim);font-size:.75rem;margin-top:2px;display:inline-block}
-.chev.on{transform:rotate(180deg)}
-.art-body{font-family:'Crimson Pro',serif;font-size:.93rem;line-height:1.72;color:var(--text);padding:0 14px 12px;display:none}
+
+/* CONTEÚDO DO ARTIGO */
+.art-body{display:none;padding:2px 18px 14px 46px;font-family:'Crimson Pro',serif;font-size:.93rem;line-height:1.72;color:var(--text)}
 .art-body.on{display:block}
-.art-body p{margin-bottom:.45rem}.art-body ul{padding-left:16px;margin-bottom:.45rem}.art-body li{margin-bottom:.2rem}
+.art-body p{margin-bottom:.45rem}
+.art-body ul{padding-left:16px;margin-bottom:.45rem}
+.art-body li{margin-bottom:.22rem}
 .note{font-style:italic;color:var(--text-dim);font-size:.86rem;margin-top:.5rem;border-left:2px solid var(--border);padding-left:10px}
 .tip{background:var(--gold-dim);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:8px 12px;font-size:.86rem;font-style:italic;margin-top:.5rem}
+
+/* HISTÓRICO */
 .hist-bar{background:rgba(196,160,0,.06);border:1px solid rgba(196,160,0,.18);border-radius:7px;padding:9px 12px;margin-top:8px}
-.hist-ttl{font-family:'Cinzel',serif;font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:#8c6400;margin-bottom:5px}
+.hist-ttl{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:#8c6400;margin-bottom:5px}
 .hist-row{display:flex;gap:8px;padding:3px 0;border-bottom:1px solid rgba(196,160,0,.1);align-items:flex-start}
 .hist-row:last-child{border-bottom:none;padding-bottom:0}
-.hist-dt{font-size:.72rem;color:#8c6400;white-space:nowrap;font-family:'Cinzel',serif}
+.hist-dt{font-size:.7rem;color:#8c6400;white-space:nowrap;font-family:'Cinzel',serif}
 .hist-tx{font-size:.78rem;flex:1;font-family:'DM Sans',sans-serif}
-.hist-au{font-size:.7rem;color:var(--text-dim);white-space:nowrap}
+.hist-au{font-size:.68rem;color:var(--text-dim);white-space:nowrap}
+
+/* EDIÇÃO */
 .ed-area{background:var(--gold-dim);border:1px solid var(--border);border-radius:7px;padding:12px;margin-top:8px;display:none}
 .ed-area.on{display:block}
-.ed-lbl{font-family:'Cinzel',serif;font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.ed-lbl{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
 .ed-ta{width:100%;background:transparent;border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.82rem;padding:8px 10px;resize:vertical;min-height:90px;line-height:1.6}
 .ed-ta:focus{border-color:var(--gold);outline:none}
 .ed-note{width:100%;background:transparent;border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.78rem;padding:6px 10px;margin-top:6px}
 .ed-note:focus{border-color:var(--gold);outline:none}
 .ed-acts{display:flex;gap:6px;margin-top:8px;justify-content:flex-end}
 .bcnl{background:none;border:1px solid var(--border);border-radius:5px;color:var(--text-dim);font-size:.72rem;padding:5px 12px;cursor:pointer;font-family:'DM Sans',sans-serif}
-.bsav{background:var(--gold);border:none;border-radius:5px;color:#fff;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.07em;padding:6px 16px;cursor:pointer}
+.bsav{background:var(--gold);border:none;border-radius:5px;color:#fff;font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.07em;padding:6px 16px;cursor:pointer}
 .bsav:hover{background:var(--gold-light)}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#fff;border:1px solid var(--gold);color:var(--gold);border-radius:7px;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.07em;padding:9px 18px;box-shadow:0 4px 20px rgba(196,57,107,.15);pointer-events:none;opacity:0;transition:opacity .3s;z-index:200}
+
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#fff;border:1px solid var(--gold);color:var(--gold);border-radius:7px;font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.07em;padding:9px 18px;box-shadow:0 4px 20px rgba(196,57,107,.15);pointer-events:none;opacity:0;transition:opacity .3s;z-index:200}
 .toast.on{opacity:1}
 </style>
 </head>
 <body>
+
 <header>
-  <div class="hrow">
-    <div><div class="htitle">✦ Estatuto Interno</div><div class="hsub">Terreiro Bolhas de Luz — documento vivo</div></div>
-    <div class="hbtns">
-      <button class="pill" id="btnEd" onclick="toggleMode()">✏️ Editar</button>
-      <button class="pill" id="btnHist" onclick="toggleHist()">📋 Histórico</button>
-    </div>
+  <div class="logo">✦</div>
+  <div class="htitle">Estatuto Interno</div>
+  <div class="hsub">Terreiro Bolhas de Luz</div>
+  <div class="hdate" id="hdate"></div>
+  <div class="hbtns">
+    <button class="pill" id="btnExp" onclick="expandAll()">↕ Expandir tudo</button>
+    <button class="pill" id="btnEd" onclick="toggleMode()">✏️ Editar</button>
+    <button class="pill" id="btnHist" onclick="toggleHist()">📋 Histórico</button>
   </div>
 </header>
-<div class="nav" id="nav"></div>
-<div class="main" id="main"></div>
+
+<div class="doc" id="doc"></div>
 <div class="toast" id="toast"></div>
 
 <script>
 const AUTHOR="Anna Paula";
+
 const chapters=[
-{id:"identidade",icon:"🌸",lbl:"Identidade",title:"Quem Somos",arts:[
-{id:"i1",title:"O que é o Terreiro Bolhas de Luz",body:`<p>O Terreiro Bolhas de Luz nasceu de fato no início de 2021 e foi inaugurado ritualístico em 30 de outubro de 2021. Somos uma organização religiosa sem fins lucrativos, com sede na Rua Tenente Ary Tarragô, 2155, Passo das Pedras, Porto Alegre — RS.</p><p>Nossa casa é um espaço de prática, preservação e transmissão das tradições de <strong>Umbanda e Quimbanda</strong>, de matriz afro-brasileira.</p>`},
-{id:"i2",title:"Para que existimos",body:`<p>Nossas finalidades:</p><ul><li>Manter espaço aberto para giras, rituais e práticas espirituais</li><li>Preservar e difundir a cultura afro-brasileira e africana</li><li>Realizar eventos culturais, artísticos, ritualísticos e humanitários</li><li>Celebrar ritos como casamentos espirituais, batismos e iniciações</li><li>Promover ações sociais e acolher mulheres, crianças e a população LGBTQIA+</li><li>Defender a liberdade religiosa e combater o racismo e a intolerância</li></ul>`},
-{id:"i3",title:"A liderança espiritual",body:`<p>A casa tem uma <strong>Liderança Espiritual Vitalícia</strong> exercida pela fundadora <strong>Anna Paula Gomes</strong>, Mãe de Santo (Zeladora de Santo).</p><p>Tudo que diz respeito a doutrina, rito, fundamento, tradição e hierarquia interna é competência exclusiva da Liderança Espiritual — não se vota, não se delibera em assembleia. O culto e seus segredos são matéria espiritual, não civil.</p>`}
-]},
 {id:"hierarquia",icon:"🌳",lbl:"Hierarquia",title:"Hierarquia da Casa",arts:[
-{id:"h1",title:"Como a casa se organiza",body:`<p>A hierarquia do terreiro é espiritual antes de ser administrativa. Cada pessoa está em um momento da própria caminhada — e isso precisa ser respeitado em ambas as direções: quem está mais avançada não se esquece de quando não sabia, e quem está chegando confia em quem já tem mais chão trilhado.</p>`},
-{id:"h2",title:"As mais velhas da casa",body:`<p><strong>Vanessa, Nathali, Jaque e Márcia</strong> são médiuns já experientes, com tempo de trabalho, autonomia e autoridade para corrigir e orientar. São médiuns de confiança que sempre prezam pelo melhor da casa e das irmãs.</p><p>Têm a bagagem necessária para iniciar desenvolvimento nas sessões, dar orientações alinhadas com os trabalhos da casa e de seus próprios guias. Seguem aprendendo — cada vez mais com seus próprios guias, fundamentos feitos, obrigações firmadas. Suas bases estão firmes e seus guias são reconhecidos e autorizados a atuar.</p>`},
-{id:"h3",title:"As filhas em caminhada",body:`<p><strong>Anne, Tassi e Brenda</strong> têm bagagem de terreiro e seguem uma caminhada de aprendizado. Vivem a beleza do desenvolvimento em seu descobrimento, entendimento e aprendizado com os próprios guias.</p><p>Estão em diferentes momentos, mas alinhadas com a doutrina da casa. Sabem quando ensinar e quando pedir ajuda. Têm autoridade para auxiliar e ensinar as doutrinas e fundamentos que já aprenderam aqui. Suas bases se fortalecem a cada dia.</p>`},
-{id:"h4",title:"As que estão chegando",body:`<p><strong>Vi, Manu, Ju, Gabi, Nicole e Stephani</strong> — nossas sementes florescendo. Estão no momento mais importante da caminhada: criar raízes, bases sólidas e fortes para crescer frondosas.</p><p>Aqui, o olhar é de aprendizado, de respirar, de silêncio. É o momento de sentar para aprender. Busquem as irmãs mais velhas. Deixem para elas as responsabilidades de desenvolvimento e segurança — elas sabem o que estão fazendo.</p><div class="tip">Vocês estão vivendo o melhor momento da espiritualidade de vocês. Da Stephani até a Vanessa. Porque por mais clichê que seja, o melhor momento sempre vai ser o agora.</div>`},
-{id:"h5",title:"Autoridade e orientação",body:`<p>Anna Paula, Anne e Vanessa têm autoridade para orientar e corrigir. Se alguém está dizendo pra você não fazer algo, é porque está te ajudando.</p><p>Quem está desincorporado deve estar disponível para ajudar quem está cambonando — alcançar um fósforo, proteger um guia, estar com os olhos abertos.</p>`}
+{id:"h1",title:"Nossas mais velhas",body:`<p>Nossas queridas mais velhas da casa, <strong>Vanessa, Thali, Jaque e Márcia</strong>. São médiuns já experientes, com tempo de trabalho, e autonomia e autoridade para corrigir e orientar. São médiuns de confiança, que sempre prezam pelo melhor da casa e das suas irmãs, e já tem a bagagem necessária para iniciar desenvolvimento nas sessões, dar orientações de acordo com a própria mediunidade e fundamento, alinhadas com os trabalhos da casa e de seus próprios guias.</p><p>Seguem aprendendo, se desenvolvendo a cada dia, agora, cada vez mais com os seus próprios guias, fundamentos feitos, obrigações firmadas, médiuns de confiança que em segurança exploram e vivem a espiritualidade com maior autonomia, pois suas bases estão firmes e bem amparadas. Seus guias são reconhecidos, autorizados, e atuam conforme precisam.</p>`},
+{id:"h2",title:"As filhas em desenvolvimento",body:`<p><strong>Anne, Tassi, Brenda</strong> são nossas filhas com bagagem de terreiro, que seguem uma caminhada de aprendizado e ainda vivem a beleza do desenvolvimento em seu descobrimento, entendimento, e aprendizado com os próprios guias. São médiuns em diferentes momentos da caminhada, mas que estão alinhadas com a doutrina da casa, sabem quando ensinar e quando pedir ajuda, de forma mais cautelosa, já possuem doutrinas e fundamentos bem estabelecidos.</p><p>Trazem a maturidade que só o tempo pode nos oferecer. Elas tem autoridade para auxiliar, e ensinar as doutrinas e fundamentos que já aprenderam dentro do terreiro, já tem tempo de casa para saber até onde dá pra ir, e quando perguntar. Suas bases estão cada dia mais sólidas, se fortalecendo, e dando continuidade no desenvolvimento na relação com os seus próprios guias, se fortalecendo, crescendo, e cada dia mais maduras na espiritualidade.</p>`},
+{id:"h3",title:"As que estão chegando",body:`<p>E chegamos nas nossas babys! Nossas sementinhas que estão florescendo, <strong>Vi, Manu, Ju, Gabi, Nicole e Stephani</strong>! Nossas filhas mais novas, que estão aprendendo, conhecendo, explorando a espiritualidade com os olhos de uma criança que aprende a cada dia uma coisa nova. Estão no momento mais importante de suas caminhadas, momento de se fortalecer, de criar raízes, bases sólidas e fortes para que possam crescer frondosas árvores que um dia irão ajudar aquelas que ainda virão.</p><p>Aqui, o olhar é de aprendizado, de respirar, de silêncio, como dizem os mais velhos, é o momento de sentar para aprender. Busquem ajuda das irmãs de vocês, aquelas que são mais velhas, que já tem experiência de terreiro, que já tem mais conhecimento. Vocês estão no momento de ser cuidadas, de serem orientadas, aproveitem, aproveitem cada segundo, cada instante, deixem para as mais velhas as responsabilidades de desenvolvimento, de segurança, de cuidado. Pois elas sabem o que estão fazendo, e tem o preparo e firmeza pra auxiliar sem se prejudicar, ou prejudicar vocês.</p><div class="tip">Vocês estão vivendo o melhor momento da espiritualidade de vocês, todas. Da Stephani até a Vanessa. Porque, por mais clichê que seja, o melhor momento sempre vai ser o agora. Então aproveitem, vivam cada etapa com orgulho, com amor, com carinho. Respeitem o momento que estão vivendo, respeitem a espiritualidade e a mediunidade das suas irmãs.</div>`},
+{id:"h4",title:"Autoridade e orientação",body:`<p>Se alguém está dizendo pra você não fazer algo, é porque está te ajudando.</p><p>Quem está desincorporado deve estar disponível para ajudar quem está cambonando — alcançar um fósforo, proteger um guia, estar com os olhos abertos.</p><p>A fé ela nos pede uma coisa curiosa, confiar antes, entender depois. Quando bem trilhada, de forma respeitosa, com segurança, a fé se torna um salto de confiança, não sabemos quem está chegando, mas precisamos confiar para que chegue. E lembrem sempre, somos todos universos, somos todos ancestralidade, caminhos, natureza. E cabe a nós, explorar a nossa história.</p>`}
 ]},
-{id:"conduta",icon:"🤍",lbl:"Conduta",title:"Respeito e Ética",arts:[
-{id:"c1",title:"Respeito acima de tudo",body:`<p>Respeito não é favor — é o mínimo inegociável dentro desta casa. Isso vale entre irmãs, com os guias, com a assistência, com quem está chegando pela primeira vez.</p><p>Não gosta de alguém? Aqui dentro: "boa noite" e "bom dia". Vida pessoal fica do lado de fora. A porta do terreiro é um limiar — o que entra é o que deve ser trazido, não o que veio do dia ruim lá fora.</p><p>Cuidado com brincadeiras que perdem a mão, caras e bocas, comentários sobre irmãs. O que parece inofensivo pode machucar mais do que se imagina — e no terreiro, energia não é metáfora.</p>`},
-{id:"c2",title:"Sigilo das consultas",body:`<p>O que acontece numa consulta é sagrado. O que um guia disse para alguém não é assunto seu — mesmo que você tenha escutado, mesmo que você tenha visto. Especialmente se você viu e escutou.</p><p>Não dê interpretação ao que os guias disseram na consulta de outra pessoa. Não comente, não analise, não compare. Isso vale para o que aconteceu na sessão, para o que foi passado em particular, para o que você intuiu estando do lado.</p><div class="note">Se você se pegar pensando "o guia disse aquilo pra ela porque..." — para. Não é da sua conta e não é sua verdade para guardar.</div>`},
-{id:"c3",title:"Fofoca",body:`<p>Fofoca destrói corrente. Não é drama — é literal. A energia de uma casa é construída pela harmonia de quem a compõe, e fofoca é um vazamento direto no axé coletivo.</p><p>Não fique de fofoca. Não observe para render assunto. Não repasse o que ouviu no canto. Não especule sobre a vida espiritual, afetiva ou pessoal das irmãs.</p><p>Se você tem algo a dizer sobre alguém, diz pra pessoa ou pra mãe de santo — não pro grupo, não pra outra irmã, não no corredor.</p><div class="note">A diferença entre cuidado e fofoca é simples: você está tentando resolver ou está tentando se sentir parte de algo?</div>`},
-{id:"c4",title:"Não diagnostique a energia do outro",body:`<p>O que você sente como pesado é pesado <em>para você</em> — não é verdade absoluta sobre a outra pessoa. Não diagnostique a energia de ninguém, não afirme o que "sentiu" de alguém, não espalhe impressões como se fossem fatos espirituais.</p><p>Antes de falar "sinto algo estranho nela", respira. Se for algo real e urgente, leva pra Anna Paula — não circula.</p>`}
-]},
-{id:"convivencia",icon:"🌻",lbl:"Convivência",title:"Como Vivemos Juntas",arts:[
-{id:"v1",title:"Amizades e vínculos",body:`<p>O terreiro aproxima pessoas de formas que o mundo ordinário raramente consegue. A intimidade que se cria aqui é real, profunda, e acontece naturalmente — porque quem compartilha espiritualidade compartilha algo muito além do superficial.</p><p>Amizades verdadeiras nascem aqui e são bem-vindas. Mas dentro do salão e dos trabalhos, independente de qualquer laço que exista fora daqui, vocês são <strong>irmãs de santo</strong>. Esse é o vínculo que rege tudo dentro destas paredes.</p><div class="note">Você pode ser amiga íntima de uma irmã lá fora. Aqui dentro, o que define a relação é a espiritualidade e a hierarquia da casa — não a intimidade pessoal.</div>`},
-{id:"v2",title:"Relacionamentos e afeto",body:`<p>O amor é bem-vindo aqui. Conexões acontecem — às vezes entre pessoas que se encontraram nesta casa — e isso não é proibido nem julgado. O coração não pede permissão, e a espiritualidade que une pessoas às vezes também as une de outras formas.</p><p>O que não tem espaço aqui é o terreiro ser tratado como ponto de encontro ou espaço de conquista. As pessoas que estão aqui vieram buscar espiritualidade — esse é o motivo de todos estarmos juntos, e precisa ser respeitado.</p><p>Dentro do salão e dos trabalhos: nada de flerte, nada de aproximação que cause desconforto, nada que coloque a outra pessoa em posição de ter que lidar com algo que não veio buscar. Se um sentimento existe, ele espera o momento certo — que não é dentro da corrente.</p><div class="note">A linha é simples: amor genuíno encontra seu caminho com respeito e cuidado. O que não respeita o espaço sagrado e a vontade da outra pessoa não é amor.</div>`},
-{id:"v3",title:"Casais na casa",body:`<p>Casais não entram juntos como filhos da casa. Apenas um cruza, apenas um é responsabilidade espiritual da mãe de santo.</p><p>Frequentar, acompanhar como assistência, ser irmão de santo: sem problema. Cruzar juntos na corrente: não é permitido. Exceções existem, mas não são regra — e quem indicar um casal assume responsabilidade por eventuais conflitos.</p>`},
-{id:"v4",title:"Não induza, não insista",body:`<p>Não indique o terreiro como solução para os problemas de ninguém. Não insista para que alguém venha. Convida uma vez, duas — a pessoa já sabe que é bem-vinda. Filho vem quando é filho.</p><p>Trazer alguém que não está pronta cria mais trabalho do que axé. Confie no tempo dos guias.</p>`}
+{id:"conduta",icon:"🤍",lbl:"Conduta",title:"Convivência e Ética",arts:[
+{id:"c1",title:"Respeito e convivência",body:`<p>Vocês são a cara do terreiro. Vida pessoal fica do lado de fora.</p><p>Não gosta de alguém? Aqui dentro: "boa noite" e "bom dia". O mínimo de educação é inegociável.</p><p>Cuidado com brincadeiras que perdem a mão, com piadas que machucam e se escondem atrás do "é só brincadeira". Cuidado com insistir quando a pessoa já deu sinal que não quer, com não ler o desconforto do outro, com não perceber quando foi longe demais. Caras e bocas, comentários, deboche — não têm espaço aqui. Não deixe que o fato de não gostar de alguém faça essa pessoa se sentir desconfortável num lugar que ela veio buscar acolhimento.</p><p>Porque as pessoas não estão vindo aqui pra falar com a gente. Elas não estão vindo aqui porque gostam da nossa cara. Elas estão vindo porque confiam que aqui tem médiuns aptos e preparados para fazer o intermédio da ancestralidade com a Terra. Estão procurando ajuda, um conselho, um abraço, um acolhimento. E podem ter certeza que não é pra chegar num terreiro e ser destratado, debochado, ver irmãos de santo fazendo caras e bocas um pro outro.</p><p>As pessoas observam. As pessoas percebem. Elas vão ver se vocês estão rindo de alguém, se estão de deboche, se estão menosprezando, se estão fazendo piada. É esse tipo de coisa que as pessoas olham quando estão conhecendo uma casa. E o nosso terreiro não é isso.</p><p>Então cuide para não se deixar levar pela empolgação. Mantenha o respeito, mantenha uma boa conduta — dentro e fora do salão.</p>`},
+{id:"c2",title:"Fofoca",body:`<p>Não ficar de fofoca, não observar para render assunto. Se não gosta, se não concorda — se afasta. Não fica ali olhando só pra catar informação, só pra ter o que contar depois. Não dar interpretação ao que os guias disseram numa consulta de outro.</p><p>Não falar da vida do outro, não achar que sabe mais da vida do outro do que ele mesmo, não ficar comentando, não ficar julgando. Talvez você não saiba o suficiente pra entender.</p><p>Às vezes algo acontece e a gente não sabe o motivo — porque existe orientação, existe conversa, existem muitas coisas que a gente não vê. Então a gente tem que dar o benefício da dúvida, dar oportunidade. E se tiver alguma dúvida: pergunta. A comunicação é a melhor chave.</p><p>E pra considerar sempre: se a pessoa não pode ouvir o que a gente está falando, é porque provavelmente a gente não deveria estar falando.</p>`},
+{id:"c3",title:"Sigilo das consultas",body:`<p>Não repassar o que foi dito nas consultas — nem o que os guias falaram, nem o que as pessoas perguntaram. Não ficar pensando sobre a consulta do outro, não ficar interpretando, não ficar querendo explicar.</p><p>O que foi dito na sessão foi dito para que aquela pessoa escutasse naquele momento, naquela forma, naquela energia. As palavras estão sendo escolhidas para que o consulente as entenda — não é o que a gente interpreta, não é o que aquele símbolo significa pra gente, é o que significa pra aquela pessoa.</p><p>A gente muitas vezes vai entender errado porque vai olhar com o nosso olhar de julgamento da Terra. Vai considerar o que a gente acha daquela pessoa, o que a gente pensa, o que a gente acredita. Mas não é isso. Não cabe a gente entender, não cabe a gente querer explicar, nem achar que a pessoa entendeu errado.</p><p>Nossa tradução é energia em palavras — a incorporação. O resto é responsabilidade do guia, de se comunicar com o consulente. Se faltou, ele que vai completar — em sonho, no caminho, do jeito dele. Ele vai fazer o trabalho dele. Nosso trabalho é transmitir, ponto.</p>`},
+{id:"c4",title:"Não diagnosticar a energia do outro",body:`<p>Não diagnosticar a energia do outro. Não ficar dizendo que fulana tem uma energia pesada, que fulano é não sei o quê, que tal pessoa precisa de limpeza. A gente não tem o poder de definir quem está bem e quem está mal, quem é pesado, quem precisa de quê.</p><p>Isso é baseado em interações sociais — em coisas que não fazem sentido, que não cabem, aonde a religiosidade não está entrando. Uma coisa é uma pessoa que vem ao terreiro, que busca atendimento, que quer saber a sua opinião, que te dá essa abertura. Isso é uma coisa. Outra coisa é sair falando sobre a energia dos outros sendo que ninguém perguntou, sendo que a pessoa não te deu liberdade pra fazer esse tipo de análise.</p><p>Isso é um atendimento não solicitado, uma leitura não solicitada. É uma falta de respeito com a espiritualidade e o livre arbítrio daquela pessoa.</p><p>E além do desrespeito, existe o perigo. Mediunidade exige responsabilidade. Esse tipo de avaliação, feita de forma descabida e inconsequente, acaba com relações pessoais, acaba com impressões, cria narrativas sobre pessoas que não se defenderam porque nem sabiam que estavam sendo julgadas. É muito perigoso.</p><p>Agora, se a gente acha que a pessoa tem uma energia mais pesada, que ela te causa um mal-estar, que ela não parece agregar, que chega e te traz aquele desconforto — se afaste. E se a pessoa for próxima, se tiver uma certa intimidade, pergunta como ela está. Energia tem reflexo físico. Se a pessoa estiver pesada, ela não vai estar bem. Ela vai estar precisando de uma palavra, de um conforto, de um conselho. Às vezes uma conversa, um carinho, um abraço fazem mais diferença do que qualquer coisa.</p><p>Atuem na vida dessa pessoa de forma não invasiva. Se coloquem à disposição. Porque energia não é só limpeza que resolve — os guias atendem com palavras também, com conforto, com acolhimento. Falar que a pessoa precisa de uma limpeza sendo que ela não vai fazer não resolve nada. Só causa mal-estar, só causa desconforto.</p><p>Se a gente considera que alguém é mais pesado, pode ser que aquela pessoa seja mais pesada pra gente naquele momento. Mas a gente não pode tornar isso uma definição de quem aquela pessoa é. Aquela pessoa é muito mais do que ela passa pra gente. A vida dela não é medida na nossa balança.</p>`},
+{id:"c5",title:"Amizades e relacionamentos",body:`<p>O terreiro não é um lugar para buscar relacionamento. Não é um lugar para solteiros se encontrarem. As pessoas estão ali buscando espiritualidade — assim como as pessoas não estão ali para fazer amigos.</p><p>Relacionamentos e amizades são consequências e acontecem naturalmente. Não pode haver desconforto em relação a isso, tem que existir respeito.</p><p>O amor é bem-vindo, o amor é aceito. Se um sentimento florescer, se for algo construído, algo genuíno — tudo bem. O amor consegue manter as duas coisas vivas: ele consegue viver o prazer e ele consegue viver o respeito. Agora, prazer por prazer, troca por troca, pegação — o terreiro é um lugar sagrado, de entrar em contato com a espiritualidade e de compartilhar isso com os seus irmãos de santo. Existem lugares adequados para conhecer e buscar pessoas, e esse tipo de relacionamento é mais adequado nesses espaços. Esse tipo de troca envolve energia, envolve responsabilidade, e não cabe dentro desse vínculo.</p><p>Nossos corpos aqui não são elementos de prazer — são formas de se conectar com o sagrado. O nosso corpo é o corpo que recebe o nosso orixá. Por isso existe preceito, por isso existe cuidado. Olhares inadequados, aproximações desconfortáveis, proximidades que causam mal-estar — tudo isso vai de encontro com o que a gente é e com o que a gente carrega. Não cabe aqui.</p><p>Porque irmão de santo é irmão de santo fora do terreiro também. O respeito ao irmão de santo não fica na porta quando a gente sai — ele vai junto. Não é porque existem amizades, momentos descontraídos, encontros fora do terreiro, que vai existir desrespeito ou abordagens inadequadas. Assim como a mãe de santo é mãe de santo em qualquer lugar, sempre vai ter uma linha que não pode ser cruzada. E isso também existe dentro do relacionamento entre irmãos de santo.</p><p>Dentro do salão e dos trabalhos, vocês são irmãos de santo. Fora também.</p>`},
+{id:"c6",title:"Casais",body:`<p>Preferencialmente, casais não entram juntos como filhos da casa. Apenas um cruza, apenas um é responsabilidade da mãe de santo. Essa situação é evitada sempre que possível — e quem indicar um casal assume responsabilidade por eventuais conflitos.</p><p>Frequentar, acompanhar, ser irmão de santo: sem problema. Cruzar juntos: não é o ideal.</p><p>Caso aconteça, caso entrem juntos ou se iniciem juntos, é necessário entender que as caminhadas espirituais são individuais — mesmo que vividas em conjunto. Um não atravessa a espiritualidade do outro. Um não sabe mais do outro do que o próprio. O que o guia disse pra ela é dela. O que o guia disse pra ele é dele.</p><p>Os atritos de relação não podem vir pro terreiro, não podem vir pra corrente. E mesmo que haja compartilhamento com os irmãos de santo — contem as suas histórias, tudo bem — é necessário entender que se vocês trazem algo de vocês para dentro do terreiro, isso se torna um problema do terreiro. Isso se torna um problema da mãe de santo, algo que precisa ser resolvido para que não vire uma divisão entre irmãos, uma briga maior, um diz que me disse, uma fofoca.</p><p>E aqui está o ponto: vocês são irmãos de santo, e essa relação reflete dentro do terreiro. O que vocês fazem entre vocês — mesmo que seja fora daqui, mesmo que seja na vida pessoal de vocês — pode chegar até o terreiro. E a partir do momento que chega, se torna um problema meu também. Se você traz a sua vida pessoal pro terreiro, ela se torna um elemento dentro da balança do terreiro — sobre como as coisas devem ser conduzidas ou não. Leva isso em consideração.</p><p>Lembrem também que quem vocês conhecem dentro do terreiro já tem um título — se chama irmão de santo. Mesmo que virem amigos, não é a mesma coisa que um amigo de fora. Ele conhece os seus irmãos de santo, ele conhece a sua mãe de santo, ele conhece os guias, ele está dentro do ambiente sagrado onde você vive a sua espiritualidade. Então pense: você quer levar a sua vida pessoal para dentro desse espaço?</p><p>E não somente isso — ele é seu irmão de santo, mas ele também é irmão de santo da pessoa que te acompanha, de quem você está falando. Quando você conta algo que aconteceu de forma irresponsável, emocional, dolorosa para um irmão de santo, é exatamente isso que você está fazendo: está levando a sua impressão dolorosa para dentro do terreiro — mesmo que vocês não estejam conversando no salão.</p><p>Então sempre considerem que além de tudo, vocês também estão expondo outra pessoa. Uma pessoa que também é irmã de santo, que também vive a espiritualidade nesse espaço, e que não teve a chance de contar a própria versão.</p>`},
+{id:"c7",title:"Não induzir, não insistir",body:`<p>Não induzir e não insistir para que alguém venha ao terreiro. Filhos vêm. Convida uma vez, duas — a pessoa já sabe que é bem-vinda.</p><p>A gente não está vendendo uma cura, não está oferecendo uma salvação, não tem a resposta para todas as dores da humanidade. A gente tem um ambiente de bem-estar, de fé, de acolhimento, de família — e a gente acredita naquilo que faz aqui dentro. É normal querer dividir isso com as pessoas, querer que elas venham, querer poder ajudar. Mas cuidem pra não se perderem no arrebatamento de ser o portador da voz. A gente não bate de porta em porta. A gente não convida as pessoas a ouvir a palavra de Exu.</p><p>A Umbanda vai buscar a pessoa. A espiritualidade vai buscar a pessoa. A gente acredita em espíritos, a gente acredita em sonhos, em intuições, em sinais. Então a gente não precisa arrastar ninguém pro terreiro, não precisa insistir. A pessoa vai vir. Ela vai mostrar que quer vir — vai ter vontade, vai perguntar, vai ter curiosidade. O que a gente pode fazer a partir daí é facilitar, mostrar o caminho, deixar a pessoa à vontade.</p><p>Confie na espiritualidade. Se for do caminho daquela pessoa, ela vai vir.</p>`}
 ]},
 {id:"sessao",icon:"🕯️",lbl:"Sessão",title:"Antes e Durante a Sessão",arts:[
-{id:"s1",title:"Chegada",body:`<ul><li>Chegou no terreiro: troca de roupa assim que possível e começa a baixar o ritmo. A concentração começa na chegada, não quando a sessão abre</li><li>Não se chega na casa da mãe de santo antes de chegar no terreiro</li><li>Se chegou com a sessão em andamento: defumação (se ainda acesa), perfume ou mel de alfazema. Leitura de momento antes de entrar</li><li>Peça licença à corrente antes de cruzar. Cumprimente o Congá e o guia em terra antes de qualquer outra coisa. Cumprimentar a mãe de santo não é prioridade — os guias são</li><li>Entre quieta, pelos cantos, sem atravessar a corrente</li></ul>`},
-{id:"s2",title:"Durante a sessão",body:`<ul><li>Conversas paralelas e distrações: o senso de urgência precisa existir. Se está falando e não deveria, já vai parar</li><li>Não corte os guias — nem enquanto falam, nem enquanto andam. Passa pelos cantos, sem tocar, sem ser perceptível</li><li>A porta principal é sagrada durante os trabalhos. Não para, não fica, não cruza na frente dela. O mesmo vale para o tambor</li><li>Para banheiro, ar ou descanso: porta lateral</li><li>Quando um guia chamar sua atenção, responde</li><li>Não senta no chão da corrente, não se encosta, não se dispersa</li><li>Médiuns desincorporados tratam a cambona com o mesmo respeito que tratam os guias</li></ul>`},
-{id:"s3",title:"Celulares",body:`<ul><li>Celular dentro da corrente não fica em uso. Sem feed, sem WhatsApp, sem notificação</li><li>Celular no corpo também é problema — pode cair, vibrar, acender</li><li>Para registrar: sai da corrente, registra rápido, guarda e volta. Se um guia se aproximar, o celular desaparece</li><li>Emergência familiar: sai da corrente, resolve fora, volta</li><li>A assistência não faz registros. Fotografia é somente de pessoa autorizada</li><li>Se perceber um irmão distraído e um guia chegando: avisa</li></ul>`},
-{id:"s4",title:"Vestuário",body:`<ul><li><strong>Umbanda:</strong> branco — jaleco, calça ou saia com calça por baixo</li><li><strong>Exu:</strong> preto, vermelho e branco. Sem transparências, sem bermudas, sem decotes</li><li><strong>Ciganos:</strong> roupas coloridas, tecidos leves, lenços, acessórios</li><li><strong>Pretos Velhos:</strong> jaleco branco e calça ou saia</li><li>Dias de função que não são sessão: roupa simples e adequada. Termômetro: se meu guia chegasse agora, essa roupa seria adequada para recebê-lo?</li><li>Sapatos são proibidos no salão, sem exceção. Exceções apenas para saúde delicada ou idosos, tratadas individualmente</li></ul>`}
+{id:"s1",title:"Chegada",body:`<p>Chegou no terreiro, troca de roupa assim que possível e começa a baixar o ritmo — a concentração começa na chegada, não quando a sessão abre.</p><p>Se chegou com a sessão em andamento: se a defumação estiver acesa, se defuma. Se não estiver, pega o defumador e passa sozinho. Depois pega uma alfazema, passa na mão, passa na nuca. Antes de entrar, vai pro cantinho, bate cabeça, pede licença. Se estiver acontecendo alguma coisa — um ponto, uma movimentação, um atendimento — espera terminar antes de entrar, pra não atrapalhar o fluxo.</p><p>Entre pelos cantos, sem atravessar a corrente, sem bater cabeça no meio do caminho. Cumprimenta os guias chefes da casa, cumprimenta os guias que estiverem por perto — se não der pra cumprimentar todo mundo, não tem problema. E cumprimenta o irmão de santo que está do teu lado, beijo à mão, pra entrar na corrente.</p>`},
+{id:"s2",title:"Durante a sessão",body:`<p>Conversas paralelas e distrações devem ser cuidadas. A nossa atenção precisa estar nos guias o tempo inteiro. Se a gente está fazendo uma tarefa, tudo bem — mas sempre tem que ter alguém disponível, e mesmo ocupado, todo mundo tem que estar com o olho na sessão.</p><p>Não cortar os guias — nem enquanto falam, nem enquanto andam. Passa pelos cantos, sem tocar, sem empurrar, sem ser perceptível. A porta principal é sagrada durante os trabalhos — não para, não fica, não cruza na frente dela. O mesmo vale para o tambor. Para banheiro, ar ou descanso: porta lateral. A assistência precisa ser orientada sobre isso.</p><p>Quando um guia chamar sua atenção, não tem tempo — responde. Não se senta no chão da corrente, não se encosta, não se dispersa.</p><p>Médiuns desincorporados devem tratar a cambona com o mesmo respeito que tratam os guias: não passar na frente, estar disponível para ajudar, estar com os olhos abertos.</p>`},
+{id:"s3",title:"Celulares e relógios",body:`<p>Celular dentro da corrente não fica em uso. Sem feed, sem WhatsApp, sem notificação. Celular no corpo também é problema — pode cair, vibrar, acender.</p><p>O terreiro tem câmeras de segurança, então os momentos estão sendo registrados. Se quiser guardar um momento especial, uma cena bonita, algo que você acha que o irmão vai ficar feliz em ver — tudo bem, mas não é uma prioridade. Sai da corrente, registra rápido, guarda e volta. Atenção sempre aos arredores — se um guia se aproximar, o celular desaparece. Emergência familiar: sai da corrente, resolve fora, volta.</p><p>Relógio em uso contínuo dentro da corrente também é distração. A assistência não faz registros. Fotografia é somente de pessoa autorizada.</p><p>Se perceber um irmão distraído com o celular e um guia chamando: avisa, orienta. Se precisar parar pra mexer no celular, sai do salão, vai pra rua, resolve em cinco minutinhos e volta. E mesmo assim — não é pra rede social, não é pra ficar à toa no telefone. Só emergência, só algo extremamente necessário. Aí não se resolve dentro do salão, se resolve na rua. E não fica parado mexendo no celular na frente do salão também.</p>`},
+{id:"s4",title:"Vestuário",body:`<p>Quando a gente começa, começa com roupa branca e jaleco — é a roupa da cambonagem. Com o tempo, conforme os guias vão se apresentando, vão se desenvolvendo, dá pra ir acrescentando um detalhe, um bordado, um acabamento na cor do guia. Mas sem exagero — tudo tem seu tempo.</p><p>Não precisa sair comprando três saias uma de umbanda, uma de exu e uma de cigana. Compra uma saia branca. Serve pra todas as linhas. Depois que a Pomba Gira chegar, já souber quem é, já souber com o que ela gosta de trabalhar — aí sim, vai lá e compra uma saia na cor do trabalho dela. Mas primeiro, a roupinha branca. Roupas ritualísticas completas, paramentas, ferramentas — são itens ganhados, em cacicamentos, em coroações, em diversos contextos. Não é pra se desesperar e sair comprando.</p><p>Nossas roupas são simples, bonitas, arrumadas, com as nossas cores — mas predominantemente brancas. Em dias de festa, sessão de visita, dá pra colocar uma roupinha um pouco mais trabalhada, um pouco mais colorida — mas sem exagero. Sem transparências, sem grandes decotes, sem saias de armação quilométricas.</p><p>Sessão de Umbanda: branco — jaleco, calça ou saia com calça por baixo. Sessão de Exu: preto, vermelho e branco. Sessão de Ciganos: roupas coloridas, tecidos leves, lenços, acessórios. Sessão de Pretos Velhos: jaleco branco e calça ou saia.</p><p>Calça debaixo da saia não é negociável. Não é à toa — tem momento que se levanta a saia, se vira, se abaixa, se arrasta, se dá cambalhota. A calça garante que não haja constrangimento, que não haja desconforto. E calça não é short.</p><p>De forma geral, pensem sempre na roupa íntima, pensem em roupas confortáveis que deixem tudo nos seus devidos lugares. A ideia é que nada tire a atenção do que importa — nem de vocês, nem de quem está do lado.</p><p>Dias de função que não são sessão: roupa simples, adequada ao terreiro. Termômetro: se meu guia chegasse agora, essa roupa seria adequada para recebê-lo? Sapatos são proibidos no salão, sem exceção — assistência, convidados e filhos da casa. Exceções apenas para saúde delicada ou idosos, tratadas individualmente.</p>`},
+{id:"s5",title:"Fumantes, bebidas e assistência",body:`<p>Fumar e beber dentro do salão é proibido, salvo oferta de um guia. Assistência com cheiro forte de bebida ou visivelmente alterada: oriente com respeito a retornar outro dia. Bituca no chão, cigarro apagado na parede: chame a atenção, com educação e firmeza.</p><p>Fios de conta não se usa bebendo, fumando, namorando ou ao banheiro. São elementos de trabalho — sagrados. Para o dia a dia, usa-se a segurança pessoal em ferro — não o fio de conta.</p>`},
+{id:"s6",title:"Segurança",body:`<p>Se um guia orientar alguém a ir embora e a pessoa recusar, a corrente intervém — é questão terrena. Aborde com calma. Preserve os médiuns incorporados de conflito físico ou verbal.</p><p>Para pessoas desconhecidas: pergunte como conheceram a casa. Se houver desconfiança, oriente a retornar outro dia. Pessoas que beberam ou usaram substâncias não entram no terreiro.</p><p>Deixem as pombas giras reagirem a situações de desrespeito — não as tranquem. Se a incorporação não der autonomia para isso, busque ajuda, mesmo que precise sair do transe.</p>`}
 ]},
-{id:"materiais",icon:"🧿",lbl:"Materiais",title:"Materiais e Entidades",arts:[
-{id:"m1",title:"Identificação e organização",body:`<ul><li>Todos os materiais das entidades precisam de etiqueta com o nome do guia. Se há nomes repetidos, acrescenta o nome do médium</li><li>Ao chegar: leve os materiais diretamente à mesa da cambonagem. A cambone não busca nada nas bolsas</li><li>Esqueceu? Avise a cambone antes da sessão e pergunte se pode usar material da casa. Reponha na próxima</li><li>Não pegue material dos irmãos sem avisar. Combine com a cambone antes — não durante</li><li>A cambone tem autoridade de informar à entidade que "seu filho não trouxe." O guia se resolve e o médium arca com as consequências</li></ul>`},
-{id:"m2",title:"Fundamentos de material",body:`<ul><li>Imagens de Exu e Pomba Gira precisam ser de gesso. Resina não é aceita nas obrigações</li><li>Cores de guias, quartinhas e elementos de assentamento são orientados — não são escolha livre. Antes de comprar, pergunte</li><li>Quartinhas: responsabilidade dos filhos esvaziar e encher a cada sessão. Exu é movimento — a energia não pode ficar parada</li><li>Assentamento não se lava. Limpa com cachaça ou champagne, defuma com fumaça de cigarro ou charuto</li><li>Bebidas e pipocas velhas, velas quebradas, lixo acumulado: não se deixa. A gente recebe o que a gente dá</li></ul>`},
-{id:"m3",title:"Ponto confirmado",body:`<ul><li>Ponto confirmado é o que aconteceu na sessão — com testemunhas, com o ambiente firmado. Sonho não confirma. Intuição não confirma</li><li>Antes de comprar e trazer material, peça para um irmão confirmar com o guia</li><li>Não trate como confirmado o que ainda não foi. O axé acontece na hora certa</li><li>Ter assentamento em casa não é autorização para dar atendimento ou incorporar para pessoas de fora. Isso é autorizado com o devido tempo</li><li>Guias cruas não são guias — são miçangas</li></ul>`}
+{id:"materiais",icon:"🧿",lbl:"Materiais",title:"Materiais das Entidades",arts:[
+{id:"m1",title:"Identificação e organização",body:`<p>Todos os materiais das entidades precisam ser identificados com etiqueta do nome do guia. Se há nomes repetidos no terreiro, acrescenta o nome do médium embaixo.</p><p>Ao chegar no terreiro: leve os materiais diretamente à mesa da cambonagem. A cambone não tem obrigação de buscar nada nas bolsas. Esqueceu o material? Avise a cambone antes da sessão começar e pergunte se pode usar o material da casa. Reponha na próxima.</p><p>Não pegue material dos irmãos sem avisar antes. Se for necessário, combine com a cambone antes — não durante. A cambone tem autoridade de informar à entidade que "seu filho não trouxe, não tem." O guia se resolve do jeito dele — e o médium arca com as consequências.</p><p>Sempre perguntem se já podem levar bebida pros guias, se já podem levar cigarro. E tenham em mente que levar não é garantia de que vai beber e vai fumar — pode acontecer de o guia não querer, não pegar, ou de que nos trabalhos não haja necessidade, não seja autorizado, ou que ainda não seja o momento. Leva, deixa à disposição, está ali se precisar.</p>`},
+{id:"m2",title:"Fundamentos de material",body:`<p>Imagens de Exu e Pomba Gira precisam ser de gesso — resina não é aceita nas obrigações. Cores de guias, quartinhas e elementos de assentamento são orientados, não são escolha livre. Antes de comprar qualquer coisa, pergunte.</p><p>Quartinhas ficam no terreiro — mesmo que o Exu seja levado pra casa, as quartinhas só vão após o apronte. É responsabilidade dos filhos esvaziar e encher a cada sessão. Exu é movimento, a energia não pode ficar parada. Assentamento não se lava — água é quizila de Exu. Limpa com cachaça ou champagne, defuma com fumaça de cigarro ou charuto.</p><p>Bebidas e pipocas velhas, velas quebradas, lixo acumulado não se deixa. A gente recebe o que a gente dá. Ter assentamento em casa não é autorização para dar atendimento ou incorporar para pessoas de fora — isso é autorizado com o devido tempo. Guias cruas não são guias, são miçangas.</p>`},
+{id:"m3",title:"Ponto confirmado",body:`<p>Ponto confirmado é o que aconteceu na sessão. Sonho não confirma. Intuição não confirma. Confirmado é na sessão, com testemunhas, com o ambiente firmado. Ponto riscado confirmado é o que o guia fez com pemba, carvão, barro, axorô ou ervas na sessão. Falange de trabalho: mesma regra. A confirmação é na sessão.</p><p>Antes de comprar e trazer material, peça para um irmão confirmar com o guia. Não trate como confirmado o que ainda não foi. O axé acontece na hora certa. A liberdade que os mais velhos têm vem de terem construído uma base sólida de fundamentos. É essa base que permite explorar com segurança.</p>`}
 ]},
 {id:"preceito",icon:"🌿",lbl:"Preceito",title:"Preceito e Resguardo",arts:[
-{id:"p1",title:"Véspera de sessão",body:`<ul><li>Sem álcool em excesso, sem relações sexuais, sem comidas pesadas</li><li>Organizar uma boa noite de sono</li></ul>`},
-{id:"p2",title:"No dia da sessão",body:`<ul><li>Preceito de álcool, drogas e sexo se torna lei. Em caso de quebra, não venha aos trabalhos</li><li>Remédio de uso contínuo não se altera. Se o guia não puder beber por motivo de saúde, avise a cambone</li><li>Banho de ervas de descarrego antes da sessão — dos ombros para baixo, nunca na cabeça. Não se seca</li><li>Fios de conta não se usa bebendo, fumando, namorando ou ao banheiro. São elementos de trabalho — sagrados. Para o dia a dia, usa-se a segurança pessoal em ferro</li></ul>`},
-{id:"p3",title:"Resguardo pós-obrigação",body:`<ul><li>Não buscar brigas, não se expor a situações de risco, não perder o controle</li><li>Não é cancelar a vida — é se vigiar mais</li><li>Preceito é mais rigoroso que resguardo: tem data, tem motivo, tem contexto ritualístico específico</li><li>Em carnaval e festas: preserve-se. Tire as guias, coloque as seguranças em ferro</li></ul>`}
+{id:"p1",title:"Véspera de sessão",body:`<p>Véspera de sessão: sem álcool em excesso, sem relações sexuais, sem comidas pesadas. Organizar uma boa noite de sono.</p>`},
+{id:"p2",title:"No dia da sessão",body:`<p>No dia da sessão: preceito de álcool, drogas e sexo se torna lei. Em caso de quebra, não venha aos trabalhos. Remédio de uso contínuo não se altera. Se o guia não puder beber por motivo de saúde, avise a cambone.</p><p>Banho de ervas de descarrego antes da sessão — dos ombros para baixo, nunca na cabeça. Não se seca. Fios de conta não se usa bebendo, fumando, namorando ou ao banheiro. São elementos de trabalho — sagrados. Para o dia a dia, usa-se a segurança pessoal em ferro — não o fio de conta.</p>`},
+{id:"p3",title:"Resguardo pós-obrigação",body:`<p>Resguardo pós-obrigação: não buscar brigas, não se expor a situações de risco, não perder o controle. Não é cancelar a vida — é se vigiar mais. Preceito é mais rigoroso que resguardo: tem data, tem motivo, tem contexto ritualístico específico.</p>`},
+{id:"p4",title:"Postura fora do terreiro",body:`<p>Ser umbandista é um estilo de vida, não só o dia de sessão. A Umbanda está presente todos os dias. Não se conectar com estranhos nas ruas em sentido mediúnico. O ponto mais seguro de contato é a casa e o terreiro.</p><p>Em carnaval e em festas: preserve-se, não se arrisque, não abuse. Os Exus já têm muito trabalho nas ruas. Tirarem as guias em festas, coloquem as seguranças em ferro. Ruas não são lugar de falar com estranhos espiritualmente — por mais intrigante que pareça.</p>`}
 ]},
 {id:"financeiro",icon:"💰",lbl:"Financeiro",title:"Financeiro",arts:[
-{id:"f1",title:"Mensalidade e contribuição",body:`<ul><li>Mensalidade: R$50 fixos todo mês. Pode ser variável com comunicação antecipada — mas precisa de compromisso e estabilidade</li><li>Se não puder pagar o valor cheio, avise antes. Não some</li><li>Tambor funciona por vaquinha — a iniciativa de arrecadar é coletiva, sem precisar de cobrança</li></ul>`},
-{id:"f2",title:"Obrigações financeiras",body:`<ul><li>Obrigação de agosto tem valor fixo por pessoa, pago com antecedência</li><li>Não se endivida para pagar obrigação. Exu precisa dar caminho pra comer — a gente não abre mão de alimentação e necessidades básicas</li><li>Nenhum valor fica com a mãe de santo. No encerramento da obrigação é feito o portal de transparência</li><li>Arrecadações com finalidade declarada são usadas exclusivamente para aquela finalidade, com prestação de contas obrigatória</li></ul>`},
-{id:"f3",title:"Patrimônio e bens sagrados",body:`<p>O patrimônio da casa não é distribuído entre membros em nenhuma hipótese. Bens sagrados — fundamentos, assentamentos, objetos ritualísticos, segredos, saberes — são inalienáveis e impenhoráveis. Não têm valor econômico: são de natureza exclusivamente espiritual.</p><p>Questões financeiras particulares: sempre no privado.</p>`}
-]},
-{id:"seguranca",icon:"🛡️",lbl:"Segurança",title:"Segurança e Postura",arts:[
-{id:"sg1",title:"Dentro do terreiro",body:`<ul><li>Fumar e beber dentro do salão é proibido, salvo oferta de um guia</li><li>Assistência com cheiro forte de bebida ou visivelmente alterada: oriente com respeito a retornar outro dia</li><li>Pessoas que beberam ou usaram substâncias não entram no terreiro</li><li>Se um guia orientar alguém a ir embora e a pessoa recusar, a corrente intervém. Aborde com calma. Preserve os médiuns incorporados de conflito</li><li>Deixem as Pombas Giras reagirem a situações de desrespeito — não as tranquem</li></ul>`},
-{id:"sg2",title:"Fora do terreiro",body:`<ul><li>Ser umbandista é um estilo de vida, não só o dia de sessão</li><li>Não se conectar com estranhos nas ruas em sentido mediúnico. O ponto mais seguro de contato é a casa e o terreiro</li><li>Ruas não são lugar de falar com estranhos espiritualmente — por mais intrigante que pareça</li><li>Os Exus já têm muito trabalho nas ruas. Preserve-se</li></ul>`}
+{id:"f1",title:"Mensalidade",body:`<p>Mensalidade: R$50 fixos, todo mês. Pode ser variável se houver comunicação antecipada — mas precisa de compromisso e estabilidade. Se não puder pagar o valor cheio no mês, avise antes. Não some.</p><p>Tambor funciona por vaquinha. A iniciativa de arrecadar é coletiva — sem precisar de cobrança.</p>`},
+{id:"f2",title:"Obrigações",body:`<p>Obrigação de agosto tem valor fixo por pessoa, pago com antecedência. Não se endivida para pagar obrigação. Exu precisa dar caminho pra comer — a gente não abre mão de alimentação e necessidades básicas.</p><p>Nenhum valor fica com a mãe de santo. No encerramento da obrigação é feito o portal de transparência. Questões financeiras particulares: no privado.</p>`},
+{id:"f3",title:"Transparência e patrimônio",body:`<p>Arrecadações realizadas com finalidade específica — vaquinhas, rifas ou coletas para rituais e eventos determinados — serão aplicadas exclusivamente na finalidade para a qual foram declaradas. Prestação de contas à comunidade após sua utilização é obrigatória.</p><p>O patrimônio não poderá ser distribuído entre membros, conselheiros ou diretores, ainda que em caso de desligamento, exclusão ou dissolução.</p>`}
 ]},
 {id:"comunicacao",icon:"💬",lbl:"Comunicação",title:"Comunicação com a Mãe de Santo",arts:[
 {id:"cm1",title:"Sigilo e confiança",body:`<p>Se você contar algo que exija interferência, o sigilo absoluto não pode ser garantido. Se não conseguir segurar que foi você quem contou, prefiro que não me conte.</p><p>Quando eu disser "está resolvido, confia" — confia. Não darei detalhes para não expor ninguém. Mas foi tratado.</p>`},
-{id:"cm2",title:"Questões de desenvolvimento",body:`<p>Elementos, cores, materiais: venha antes, não apareça com a decisão tomada.</p><p>Não precisam se justificar por não ir à sessão — o compromisso é de vocês com os guias de vocês. Questões financeiras particulares: sempre no privado.</p>`}
+{id:"cm2",title:"Desenvolvimento e elementos",body:`<p>Questões de desenvolvimento, elementos, cores, materiais: venha antes, não apareça com a decisão tomada.</p><p>Não precisam se justificar por não ir à sessão — o compromisso é de vocês com os guias de vocês. Questões financeiras particulares: no privado.</p>`}
 ]},
 {id:"administracao",icon:"⚙️",lbl:"Administração",title:"Administração",arts:[
-{id:"ad1",title:"A Diretoria",body:`<p>A Diretoria é composta por <strong>Presidente</strong>, <strong>Secretária</strong> e <strong>Tesoureira</strong>. Mandato de 10 anos, com reeleição. Todos os cargos são gratuitos.</p><p>Membros fundadores: <strong>Márcia</strong> (Secretária), <strong>Juliana</strong> (Segunda Secretária), <strong>Jaque</strong> (Tesoureira), <strong>Manu</strong> (Segunda Tesoureira), <strong>Brenda</strong> (Comunicação), <strong>Nathali</strong> (Conselheira do Oxé) e <strong>Vanessa</strong> (Fundadora de Honra).</p>`},
-{id:"ad2",title:"O Conselho do Oxé",body:`<p>Braço consultivo e mediador da casa. Atua em questões de ética, tradição, mediação de conflitos e acolhimento. Suas recomendações são opinativas — a palavra final é sempre da Liderança Espiritual. O Conselho não pratica atos de gestão financeira ou administrativa.</p>`},
-{id:"ad3",title:"Assembleias e decisões",body:`<p>A Assembleia Geral é o órgão máximo em questões administrativas. Pode ser Ordinária (anual) ou Extraordinária. Decisões comuns por maioria simples. Decisões importantes — alteração do estatuto, destituição de diretoria, alienação de bens, dissolução — exigem ⅔ dos presentes em Assembleia Extraordinária.</p>`},
-{id:"ad4",title:"Assistência Fixa",body:`<p>Estágio de quem está chegando — período de conhecimento e preparação antes de entrar na corrente mediúnica. Isentos da contribuição mensal enquanto estiverem neste estágio. Em troca: recepção de consulentes, suporte logístico e manutenção da sede.</p>`}
+{id:"ad1",title:"A Diretoria",body:`<p>A Diretoria é composta por <strong>Presidente</strong>, <strong>Secretária</strong> e <strong>Tesoureira</strong>. Mandato de 10 anos, com reeleição permitida. Todos os cargos são gratuitos — ressarcimento de despesas comprovadas em nome do terreiro é permitido.</p><p>Membros fundadores: <strong>Márcia</strong> (Secretária), <strong>Juliana</strong> (Segunda Secretária), <strong>Jaque</strong> (Tesoureira), <strong>Manu</strong> (Segunda Tesoureira), <strong>Brenda</strong> (Coordenadora de Comunicação e Mídias), <strong>Nathali</strong> (Conselheira do Oxé) e <strong>Vanessa</strong> (Conselheira e Fundadora de Honra).</p>`},
+{id:"ad2",title:"O Conselho do Oxé",body:`<p>O Conselho do Oxé é o órgão consultivo, mediador e de apoio social e religioso do terreiro. Atua em questões de ética, tradição, mediação de conflitos e acolhimento de membros.</p><p>Suas recomendações são opinativas — a palavra final sobre qualquer matéria religiosa ou social é da Liderança Espiritual Vitalícia. O Conselho não pratica atos de gestão financeira ou administrativa.</p><p>A atuação do Conselho visa proteger a Liderança Espiritual, permitindo que a Mãe de Santo foque nos fundamentos sagrados enquanto os membros do Conselho auxiliam na manutenção do bem-estar coletivo da corrente.</p>`},
+{id:"ad3",title:"Membros e admissão",body:`<p>O quadro da casa é aberto — qualquer pessoa pode ser admitida mediante manifestação voluntária e aceite da Presidência. Menores de 18 anos podem participar com autorização escrita dos responsáveis e comprovação de frequência escolar.</p><p>A perda da condição de membro ocorre por solicitação expressa, falecimento, conduta antiética comprovada ou denúncia de crime grave. A Liderança Espiritual pode expulsar qualquer membro de forma imediata por orientação dos guias da casa, visando a preservação do axé.</p>`},
+{id:"ad4",title:"Assistência Fixa",body:`<p>A Assistência Fixa é o estágio preparatório para ingresso na corrente mediúnica, destinado a associados que buscam conhecer os fundamentos da casa enquanto auxiliam em sua organização.</p><p>Quem está na Assistência Fixa tem acesso a rituais e estudos fechados para aprendizado e observação, pode receber Certificado de Trabalho Voluntário, recebe atendimento espiritual e preparo para a futura transição, e está isento da contribuição mensal enquanto neste estágio.</p><p>Em troca: recepção de consulentes, suporte logístico das sessões e manutenção da sede, observando rigorosamente o sigilo e a ética religiosa.</p>`},
+{id:"ad5",title:"Assembleias",body:`<p>A Assembleia Geral é o órgão máximo em questões administrativas. Pode ser Ordinária (anual) ou Extraordinária. Decisões comuns por maioria simples dos presentes.</p><p>Decisões importantes — alteração do estatuto, destituição de diretoria, alienação de bens imóveis, dissolução — exigem Assembleia Extraordinária especialmente convocada e quórum de ⅔ dos presentes.</p>`}
 ]}
 ];
 
-let editMode=false,showHist=false,activeId="identidade";
-let openArts={},openEdits={};
-let changes,contents;
+=false, showHist=false, allExpanded=false;
+let openCh={}, openArts={}, openEdits={};
+let changes, contents;
 try{changes=JSON.parse(localStorage.getItem("bdl_ch")||"{}")}catch(e){changes={}}
 try{contents=JSON.parse(localStorage.getItem("bdl_co")||"{}")}catch(e){contents={}}
 
 function gc(id,def){return contents[id]||def}
 function gh(id){return changes[id]||[]}
 function tryStore(){try{localStorage.setItem("bdl_ch",JSON.stringify(changes));localStorage.setItem("bdl_co",JSON.stringify(contents))}catch(e){}}
-function toggleMode(){editMode=!editMode;document.getElementById("btnEd").classList.toggle("on",editMode);document.getElementById("btnEd").textContent=editMode?"👁️ Visualizar":"✏️ Editar";render()}
-function toggleHist(){showHist=!showHist;document.getElementById("btnHist").classList.toggle("on",showHist);render()}
-function buildNav(){document.getElementById("nav").innerHTML=chapters.map(c=>`<button class="nb${c.id===activeId?" on":""}" onclick="setChap('${c.id}')">${c.icon} ${c.lbl}</button>`).join("")}
-function setChap(id){activeId=id;openArts={};openEdits={};buildNav();renderMain()}
-function renderMain(){
-  const ch=chapters.find(c=>c.id===activeId);
-  let h=`<div><div class="ch-hd"><span class="ch-icon">${ch.icon}</span><div><div class="ch-title">${ch.title}</div><div class="ch-lbl">${ch.lbl}</div></div></div>`;
-  ch.arts.forEach(a=>{
-    const hist=gh(a.id),isOpen=openArts[a.id],isEd=openEdits[a.id],hasH=hist.length>0;
-    h+=`<div class="art"><div class="art-hd" onclick="togA('${a.id}')">
-      <span class="art-sym">§</span>
-      <span class="art-ttl">${a.title}</span>
-      <span class="art-meta">
-        ${hasH?'<span class="upd">✦ atualizado</span>':""}
-        ${editMode?`<button class="edbtn" onclick="event.stopPropagation();togE('${a.id}')">${isEd?"✕":"✏️"}</button>`:""}
-        <span class="chev${isOpen?" on":""}" id="cv-${a.id}">▾</span>
-      </span>
-    </div>
-    <div class="art-body${isOpen?" on":""}" id="bd-${a.id}">
-      <div id="cn-${a.id}">${gc(a.id,a.body)}</div>
-      ${showHist&&hasH?`<div class="hist-bar"><div class="hist-ttl">📋 Histórico</div>${hist.map(e=>`<div class="hist-row"><span class="hist-dt">${e.d}</span><span class="hist-tx">${e.n||"Atualizado"}</span><span class="hist-au">${e.a}</span></div>`).join("")}</div>`:""}
-      ${editMode?`<div class="ed-area${isEd?" on":""}" id="ed-${a.id}">
-        <div class="ed-lbl">Editar conteúdo</div>
-        <textarea class="ed-ta" id="ta-${a.id}" placeholder="Novo conteúdo...">${gc(a.id,a.body).replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim()}</textarea>
-        <input class="ed-note" id="nt-${a.id}" placeholder="Motivo da alteração (ex: prazo atualizado)" />
-        <div class="ed-acts">
-          <button class="bcnl" onclick="canE('${a.id}')">Cancelar</button>
-          <button class="bsav" onclick="savE('${a.id}')">Salvar ✓</button>
-        </div>
-      </div>`:""}
-    </div></div>`;
-  });
-  h+="</div>";
-  document.getElementById("main").innerHTML=h;
+
+function toggleMode(){
+  editMode=!editMode;
+  document.getElementById("btnEd").classList.toggle("on",editMode);
+  document.getElementById("btnEd").textContent=editMode?"👁️ Visualizar":"✏️ Editar";
+  render();
 }
-function render(){buildNav();renderMain()}
-function togA(id){openArts[id]=!openArts[id];renderMain()}
-function togE(id){if(openEdits[id]){canE(id);return}openArts[id]=true;openEdits[id]=true;renderMain()}
-function canE(id){openEdits[id]=false;renderMain()}
-function savE(id){
+function toggleHist(){
+  showHist=!showHist;
+  document.getElementById("btnHist").classList.toggle("on",showHist);
+  render();
+}
+function expandAll(){
+  allExpanded=!allExpanded;
+  chapters.forEach(c=>{
+    openCh[c.id]=allExpanded;
+    c.arts.forEach(a=>{ openArts[a.id]=allExpanded; });
+  });
+  document.getElementById("btnExp").textContent=allExpanded?"↕ Recolher tudo":"↕ Expandir tudo";
+  render();
+}
+function togCh(id){openCh[id]=!openCh[id];render()}
+function togArt(id){openArts[id]=!openArts[id];render()}
+function togEd(id){
+  if(openEdits[id]){openEdits[id]=false;render();return}
+  openArts[id]=true; openEdits[id]=true; render();
+}
+function canEd(id){openEdits[id]=false;render()}
+function savEd(id){
   const raw=(document.getElementById("ta-"+id).value||"").trim();
   if(!raw){showToast("Conteúdo não pode ser vazio");return}
   const w=raw.startsWith("<")?raw:`<p>${raw.replace(/\n\n+/g,"</p><p>").replace(/\n/g,"<br>")}</p>`;
@@ -197,13 +205,67 @@ function savE(id){
   const d=`${String(now.getDate()).padStart(2,"0")}/${String(now.getMonth()+1).padStart(2,"0")}/${now.getFullYear()}`;
   if(!changes[id])changes[id]=[];
   changes[id].unshift({d,n:no,a:AUTHOR});
-  contents[id]=w;
-  tryStore();
+  contents[id]=w; tryStore();
   openEdits[id]=false;
   showToast("✦ Alteração salva");
-  renderMain();
+  render();
 }
 function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),2000)}
+
+function render(){
+  // update date
+  const now=new Date();
+  document.getElementById("hdate").textContent=`Versão em ${now.toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"})}`;
+
+  let html="";
+  chapters.forEach(ch=>{
+    const chOpen=openCh[ch.id];
+    html+=`<div class="chapter">
+      <button class="ch-toggle" onclick="togCh('${ch.id}')">
+        <span class="ch-icon">${ch.icon}</span>
+        <span class="ch-texts">
+          <span class="ch-title">${ch.title}</span>
+          <span class="ch-lbl">${ch.lbl}</span>
+        </span>
+        <span class="ch-chev${chOpen?" on":""}">▶</span>
+      </button>
+      <div class="ch-body${chOpen?" on":""}">`;
+
+    ch.arts.forEach(a=>{
+      const isOpen=openArts[a.id], isEd=openEdits[a.id];
+      const hist=gh(a.id), hasH=hist.length>0;
+      html+=`<div class="art">
+        <button class="art-toggle" onclick="togArt('${a.id}')">
+          <span class="art-sym">§</span>
+          <span class="art-ttl">${a.title}</span>
+          <span class="art-meta">
+            ${hasH?'<span class="upd">✦</span>':""}
+            ${editMode?`<span class="edbtn" onclick="event.stopPropagation();togEd('${a.id}')">${isEd?"✕":"✏️"}</span>`:""}
+            <span class="art-chev${isOpen?" on":""}">▶</span>
+          </span>
+        </button>
+        <div class="art-body${isOpen?" on":""}">
+          <div id="cn-${a.id}">${gc(a.id,a.body)}</div>
+          ${showHist&&hasH?`<div class="hist-bar"><div class="hist-ttl">📋 Histórico</div>${hist.map(e=>`<div class="hist-row"><span class="hist-dt">${e.d}</span><span class="hist-tx">${e.n}</span><span class="hist-au">${e.a}</span></div>`).join("")}</div>`:""}
+          ${editMode?`<div class="ed-area${isEd?" on":""}">
+            <div class="ed-lbl">Editar conteúdo</div>
+            <textarea class="ed-ta" id="ta-${a.id}">${gc(a.id,a.body).replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim()}</textarea>
+            <input class="ed-note" id="nt-${a.id}" placeholder="Motivo da alteração" />
+            <div class="ed-acts">
+              <button class="bcnl" onclick="canEd('${a.id}')">Cancelar</button>
+              <button class="bsav" onclick="savEd('${a.id}')">Salvar ✓</button>
+            </div>
+          </div>`:""}
+        </div>
+      </div>`;
+    });
+
+    html+=`</div></div>`;
+  });
+
+  document.getElementById("doc").innerHTML=html;
+}
+
 render();
 </script>
 </body>
