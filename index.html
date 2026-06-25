@@ -21,7 +21,7 @@ header{background:linear-gradient(135deg,#c0405a,#d4607a 60%,#e07a90);padding:40
 .pill:hover{background:rgba(255,255,255,.25)}.pill.on{background:rgba(255,255,255,.9);color:var(--gold);font-weight:500}
 
 /* DOCUMENTO */
-.doc{max-width:720px;margin:0 auto;padding:32px 20px 60px}
+.doc{}
 
 /* CAPÍTULO */
 .chapter{margin-bottom:8px;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--surface)}
@@ -91,6 +91,23 @@ header{background:linear-gradient(135deg,#c0405a,#d4607a 60%,#e07a90);padding:40
 
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#fff;border:1px solid var(--gold);color:var(--gold);border-radius:7px;font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.07em;padding:9px 18px;box-shadow:0 4px 20px rgba(196,57,107,.15);pointer-events:none;opacity:0;transition:opacity .3s;z-index:200}
 .toast.on{opacity:1}
+.intro{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:8px}
+.intro-top{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;cursor:pointer;transition:background .15s}
+.intro-top:hover{background:var(--gold-dim)}
+.intro-tag{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);flex-shrink:0;padding-top:2px}
+.intro-short{font-family:'Crimson Pro',serif;font-size:.9rem;font-style:italic;color:var(--text-dim);flex:1;line-height:1.5}
+.intro-chev{font-size:.75rem;color:var(--text-dim);transition:transform .2s;flex-shrink:0;padding-top:2px}
+.intro-chev.on{transform:rotate(90deg)}
+.intro-body{display:none;padding:2px 14px 14px;font-family:'Crimson Pro',serif;font-size:.93rem;line-height:1.72;color:var(--text)}
+.intro-body.on{display:block}
+.intro-body p{margin-bottom:.45rem}
+.ch-move{display:flex;gap:3px;align-items:center;flex-shrink:0}
+.mvbtn{background:none;border:1px solid var(--border);border-radius:4px;color:var(--text-dim);font-size:.68rem;padding:1px 5px;cursor:pointer;line-height:1.4;transition:.15s}
+.mvbtn:hover{border-color:var(--gold);color:var(--gold)}
+.mvbtn.dis{opacity:.22;pointer-events:none}
+.delbtn{background:none;border:1px solid var(--border);border-radius:4px;color:var(--text-dim);font-size:.68rem;padding:1px 6px;cursor:pointer;transition:.15s}
+.delbtn:hover{border-color:#b84040;color:#b84040}
+.delbtn.confirm{background:rgba(184,64,64,.08);border-color:#b84040;color:#b84040;font-size:.62rem;padding:2px 8px}
 </style>
 </head>
 <body>
@@ -107,11 +124,40 @@ header{background:linear-gradient(135deg,#c0405a,#d4607a 60%,#e07a90);padding:40
   </div>
 </header>
 
-<div class="doc" id="doc"></div>
+<div class="main-wrap" style="max-width:720px;margin:0 auto;padding:20px 16px 60px">
+<div class="intro">
+  <div class="intro-top" onclick="togIntro()">
+    <span class="intro-tag">✦</span>
+    <span class="intro-short">Este documento reúne as condutas e regras de convivência da casa. Seu descumprimento é tratado com diálogo — e passível de afastamento.</span>
+    <span class="intro-chev" id="intro-chev">▶</span>
+  </div>
+  <div class="intro-body" id="intro-body">
+    <p>Não é um regulamento frio — é o registro vivo do que a gente construiu juntos e do que acredita ser necessário para que essa casa funcione com harmonia, respeito e axé.</p>
+    <p>Ele existe para que ninguém precise adivinhar o que é esperado. Para que as regras sejam claras, acessíveis e iguais para todos. E para que, quando algo sair do caminho, a gente tenha um ponto de referência compartilhado.</p>
+    <p>O descumprimento das condutas aqui descritas será sempre tratado com diálogo primeiro — acredito nas pessoas e no processo. Mas situações que comprometam a harmonia, a segurança ou o axé da casa são passíveis de afastamento temporário ou definitivo, conforme a gravidade e o histórico. Não como punição, mas como proteção do espaço sagrado que construímos.</p>
+    <p>Se algo aqui precisar ser revisto, pode ser. Esse documento tem data, tem histórico, e vai crescer com a casa.</p>
+  </div>
+</div>
+<div id="doc"></div>
+</div>
 <div class="toast" id="toast"></div>
 
 <script>
 const AUTHOR="Anna Paula";
+let introOpen=false;
+function togIntro(){
+  introOpen=!introOpen;
+  document.getElementById("intro-body").classList.toggle("on",introOpen);
+  document.getElementById("intro-chev").classList.toggle("on",introOpen);
+}
+function moveCh(chId, dir){
+  const idx=chapters.findIndex(c=>c.id===chId);
+  const newIdx=idx+dir;
+  if(newIdx<0||newIdx>=chapters.length)return;
+  const tmp=chapters[idx]; chapters[idx]=chapters[newIdx]; chapters[newIdx]=tmp;
+  tryStore();
+  render();
+}
 
 const chapters=[
 {id:"hierarquia",icon:"🌳",lbl:"Hierarquia",title:"Hierarquia da Casa",arts:[
@@ -300,6 +346,7 @@ function render(){
   let html="";
   chapters.forEach(ch=>{
     const chOpen=openCh[ch.id];
+    const chIdx=chapters.indexOf(ch);
     html+=`<div class="chapter">
       <button class="ch-toggle" onclick="togCh('${ch.id}')">
         <span class="ch-icon">${ch.icon}</span>
@@ -307,6 +354,10 @@ function render(){
           <span class="ch-title">${ch.title}</span>
           <span class="ch-lbl">${ch.lbl}</span>
         </span>
+        ${editMode?`<span class="ch-move" onclick="event.stopPropagation()">
+          <span class="mvbtn${chIdx===0?' dis':''}" onclick="moveCh('${ch.id}',-1)">↑</span>
+          <span class="mvbtn${chIdx===chapters.length-1?' dis':''}" onclick="moveCh('${ch.id}',1)">↓</span>
+        </span>`:''}
         <span class="ch-chev${chOpen?" on":""}">▶</span>
       </button>
       <div class="ch-body${chOpen?" on":""}">`;
