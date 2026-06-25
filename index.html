@@ -166,7 +166,7 @@ const chapters=[
 ]}
 ];
 
-=false, showHist=false, allExpanded=false;
+let editMode=false, showHist=false, allExpanded=false;
 let openCh={}, openArts={}, openEdits={};
 let changes, contents;
 try{changes=JSON.parse(localStorage.getItem("bdl_ch")||"{}")}catch(e){changes={}}
