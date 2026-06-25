@@ -50,6 +50,13 @@ header{background:linear-gradient(135deg,#c0405a,#d4607a 60%,#e07a90);padding:40
 .art-chev.on{transform:rotate(90deg)}
 .edbtn{background:none;border:1px solid var(--border);border-radius:5px;color:var(--text-dim);font-size:.65rem;padding:2px 7px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s}
 .edbtn:hover{border-color:var(--gold);color:var(--gold)}
+.move-btns{display:inline-flex;gap:2px;align-items:center}
+.mvbtn{background:none;border:1px solid var(--border);border-radius:4px;color:var(--text-dim);font-size:.7rem;padding:1px 5px;cursor:pointer;line-height:1.4;transition:.2s}
+.mvbtn:hover{border-color:var(--gold);color:var(--gold)}
+.mvbtn.dis{opacity:.25;cursor:default;pointer-events:none}
+.delbtn{background:none;border:1px solid var(--border);border-radius:5px;color:var(--text-dim);font-size:.65rem;padding:2px 7px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s}
+.delbtn:hover{border-color:var(--red);color:var(--red)}
+.delbtn.confirm{background:var(--red-dim);border-color:var(--red);color:var(--red);font-size:.6rem;padding:2px 8px;white-space:nowrap}
 
 /* CONTEÚDO DO ARTIGO */
 .art-body{display:none;padding:2px 18px 14px 46px;font-family:'Crimson Pro',serif;font-size:.93rem;line-height:1.72;color:var(--text)}
@@ -157,29 +164,48 @@ const chapters=[
 {id:"cm1",title:"Sigilo e confiança",body:`<p>Quando vocês me trazem algo, lembrem: estão falando com a pessoa responsável por resolver, por manter a ordem, o andamento das coisas, a segurança física e espiritual de todos aqui. Isso muda o peso do que é contado.</p><p>Quando algo exige interferência, exige uma ação, não pode ser contado com o peso do silêncio — com o "não fala que fui eu", com o medo de que eu vá saber quem disse. Se não conseguir contar sem esse peso, prefiro que não conte. Porque fazer isso é apenas uma transferência de carga: vocês tiram uma preocupação das costas de vocês e trazem pra mim — sem me dar ferramentas pra resolver. A única coisa que isso traz é estresse e ansiedade.</p><p>Se eu não tivesse responsabilidade para resolver, vocês poderiam me contar tudo livremente, sem problema nenhum. Mas eu tenho. E tenham ciência: se vocês me trouxerem um problema, uma situação, uma questão que eu considere que precisa ser resolvida — eu vou resolver. De um jeito ou de outro, e sempre da melhor forma possível.</p><p>Confiem que eu vou resolver — mas tragam com essa certeza. Parto do princípio de que todos aqui são adultos, que estamos aqui pelo mesmo propósito, trabalhando e buscando o melhor. Queremos ser pessoas melhores, queremos um mundo melhor, queremos viver a nossa religião com paz e tranquilidade.</p><p>Qualquer pessoa que não estiver de acordo com as normas de respeito, segurança e paz — em algum momento vai se afastar por conta própria ou será desligada. Então o mínimo que eu espero é que, se alguém falar algo sobre outra pessoa pra mim, esteja falando com preocupação, com cuidado, com questionamento — não com inveja ou desconforto. Isso é perceptível. E eu não vou dar espaço para comentários que não sejam construtivos, que não façam diferença real na vida da pessoa.</p><p>Dito isso, quando acontecer de eu ir falar com um de vocês dizendo que um irmão trouxe uma situação de preocupação — porque entendeu que não cabia a ela se envolver, mas se preocupou — eu vou chegar, perguntar se está tudo bem, o que está acontecendo, se posso ajudar de alguma forma. Vocês vão explicar conforme acharem necessário, eu me coloco à disposição para ajudar, auxiliar e orientar, e a gente segue a partir daí.</p><p>Quando eu disser "está resolvido, confia" — confia. Não darei detalhes para não expor ninguém. Mas foi tratado.</p>`},
 {id:"cm2",title:"Desenvolvimento e elementos",body:`<p>Questões de desenvolvimento, elementos, cores, materiais: venha antes, não apareça com a decisão tomada.</p><p>Não precisam se justificar por não ir à sessão — o compromisso é de vocês com os guias de vocês. Questões financeiras particulares: no privado.</p>`}
 ]},
-{id:"administracao",icon:"⚙️",lbl:"Administração",title:"Administração",arts:[
-{id:"ad1",title:"A Diretoria",body:`<p>A Diretoria é composta por <strong>Presidente</strong>, <strong>Secretária</strong> e <strong>Tesoureira</strong>. Mandato de 10 anos, com reeleição permitida. Todos os cargos são gratuitos — ressarcimento de despesas comprovadas em nome do terreiro é permitido.</p><p>Membros fundadores: <strong>Márcia</strong> (Secretária), <strong>Juliana</strong> (Segunda Secretária), <strong>Jaque</strong> (Tesoureira), <strong>Manu</strong> (Segunda Tesoureira), <strong>Brenda</strong> (Coordenadora de Comunicação e Mídias), <strong>Nathali</strong> (Conselheira do Oxé) e <strong>Vanessa</strong> (Conselheira e Fundadora de Honra).</p>`},
-{id:"ad2",title:"O Conselho do Oxé",body:`<p>O Conselho do Oxé é o órgão consultivo, mediador e de apoio social e religioso do terreiro. Atua em questões de ética, tradição, mediação de conflitos e acolhimento de membros.</p><p>Suas recomendações são opinativas — a palavra final sobre qualquer matéria religiosa ou social é da Liderança Espiritual Vitalícia. O Conselho não pratica atos de gestão financeira ou administrativa.</p><p>A atuação do Conselho visa proteger a Liderança Espiritual, permitindo que a Mãe de Santo foque nos fundamentos sagrados enquanto os membros do Conselho auxiliam na manutenção do bem-estar coletivo da corrente.</p>`},
-{id:"ad3",title:"Membros e admissão",body:`<p>O quadro da casa é aberto — qualquer pessoa pode ser admitida mediante manifestação voluntária e aceite da Presidência. Menores de 18 anos podem participar com autorização escrita dos responsáveis e comprovação de frequência escolar.</p><p>A perda da condição de membro ocorre por solicitação expressa, falecimento, conduta antiética comprovada ou denúncia de crime grave. A Liderança Espiritual pode expulsar qualquer membro de forma imediata por orientação dos guias da casa, visando a preservação do axé.</p>`},
-{id:"ad4",title:"Assistência Fixa",body:`<p>A Assistência Fixa é o estágio preparatório para ingresso na corrente mediúnica, destinado a associados que buscam conhecer os fundamentos da casa enquanto auxiliam em sua organização.</p><p>Quem está na Assistência Fixa tem acesso a rituais e estudos fechados para aprendizado e observação, pode receber Certificado de Trabalho Voluntário, recebe atendimento espiritual e preparo para a futura transição, e está isento da contribuição mensal enquanto neste estágio.</p><p>Em troca: recepção de consulentes, suporte logístico das sessões e manutenção da sede, observando rigorosamente o sigilo e a ética religiosa.</p>`},
-{id:"ad5",title:"Assembleias",body:`<p>A Assembleia Geral é o órgão máximo em questões administrativas. Pode ser Ordinária (anual) ou Extraordinária. Decisões comuns por maioria simples dos presentes.</p><p>Decisões importantes — alteração do estatuto, destituição de diretoria, alienação de bens imóveis, dissolução — exigem Assembleia Extraordinária especialmente convocada e quórum de ⅔ dos presentes.</p>`}
+{id:"administracao",icon:"⚙️",lbl:"Conselho do Oxé",title:"Conselho do Oxé",arts:[
+{id:"ad1",title:"Quem são e para que servem",body:`<p>O Conselho do Oxé é formado por pessoas de confiança da mãe de santo — membros com tempo de casa, conhecimento dos fundamentos e comprometimento com o bem-estar da corrente.</p><p>Existem para ser um outro olhar. Quando surge uma situação, um conflito, uma decisão que exige mais do que um ponto de vista, o Conselho é acionado para garantir imparcialidade, justiça e transparência. São uma camada de amparo — tanto para a mãe de santo, quanto para os membros da casa.</p><p>Suas recomendações são consultivas — a palavra final é sempre da Liderança Espiritual. Mas o processo de ouvir, ponderar e buscar outros olhares antes de decidir faz parte de como essa casa se conduz.</p>`}
 ]}
 ];
 
 let editMode=false, showHist=false, allExpanded=false;
-let openCh={}, openArts={}, openEdits={};
-let changes, contents;
+let openCh={}, openArts={}, openEdits={}, confirmDel={};
+let changes, contents, artOrder;
 try{changes=JSON.parse(localStorage.getItem("bdl_ch")||"{}")}catch(e){changes={}}
 try{contents=JSON.parse(localStorage.getItem("bdl_co")||"{}")}catch(e){contents={}}
+try{artOrder=JSON.parse(localStorage.getItem("bdl_order")||"null")}catch(e){artOrder=null}
+
+// Aplicar ordem salva
+if(artOrder){
+  chapters.forEach(ch=>{
+    if(artOrder[ch.id]){
+      const orderMap=artOrder[ch.id];
+      ch.arts.sort((a,b)=>{
+        const ai=orderMap.indexOf(a.id), bi=orderMap.indexOf(b.id);
+        return (ai===-1?999:ai)-(bi===-1?999:bi);
+      });
+    }
+  });
+}
 
 function gc(id,def){return contents[id]||def}
 function gh(id){return changes[id]||[]}
-function tryStore(){try{localStorage.setItem("bdl_ch",JSON.stringify(changes));localStorage.setItem("bdl_co",JSON.stringify(contents))}catch(e){}}
+function tryStore(){
+  try{
+    localStorage.setItem("bdl_ch",JSON.stringify(changes));
+    localStorage.setItem("bdl_co",JSON.stringify(contents));
+    const order={};
+    chapters.forEach(ch=>{order[ch.id]=ch.arts.map(a=>a.id);});
+    localStorage.setItem("bdl_order",JSON.stringify(order));
+  }catch(e){}
+}
 
 function toggleMode(){
   editMode=!editMode;
   document.getElementById("btnEd").classList.toggle("on",editMode);
   document.getElementById("btnEd").textContent=editMode?"👁️ Visualizar":"✏️ Editar";
+  confirmDel={};
   render();
 }
 function toggleHist(){
@@ -200,13 +226,21 @@ function togCh(id){openCh[id]=!openCh[id];render()}
 function togArt(id){openArts[id]=!openArts[id];render()}
 function togEd(id){
   if(openEdits[id]){openEdits[id]=false;render();return}
-  openArts[id]=true; openEdits[id]=true; render();
+  openArts[id]=true; openEdits[id]=true; confirmDel[id]=false; render();
 }
-function canEd(id){openEdits[id]=false;render()}
+function canEd(id){openEdits[id]=false;confirmDel[id]=false;render()}
+
 function savEd(id){
   const raw=(document.getElementById("ta-"+id).value||"").trim();
   if(!raw){showToast("Conteúdo não pode ser vazio");return}
   const w=raw.startsWith("<")?raw:`<p>${raw.replace(/\n\n+/g,"</p><p>").replace(/\n/g,"<br>")}</p>`;
+  const titleEl=document.getElementById("ti-"+id);
+  if(titleEl&&titleEl.value.trim()){
+    for(const ch of chapters){
+      const a=ch.arts.find(x=>x.id===id);
+      if(a){a.title=titleEl.value.trim();break;}
+    }
+  }
   const no=(document.getElementById("nt-"+id).value||"").trim()||"Atualizado";
   const now=new Date();
   const d=`${String(now.getDate()).padStart(2,"0")}/${String(now.getMonth()+1).padStart(2,"0")}/${now.getFullYear()}`;
@@ -217,10 +251,49 @@ function savEd(id){
   showToast("✦ Alteração salva");
   render();
 }
-function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),2000)}
+
+function moveArt(chId, artId, dir){
+  const ch=chapters.find(c=>c.id===chId);
+  const idx=ch.arts.findIndex(a=>a.id===artId);
+  const newIdx=idx+dir;
+  if(newIdx<0||newIdx>=ch.arts.length)return;
+  const tmp=ch.arts[idx]; ch.arts[idx]=ch.arts[newIdx]; ch.arts[newIdx]=tmp;
+  tryStore();
+  render();
+}
+
+function delArt(chId, artId){
+  if(!confirmDel[artId]){
+    confirmDel[artId]=true;
+    render();
+    return;
+  }
+  const ch=chapters.find(c=>c.id===chId);
+  ch.arts=ch.arts.filter(a=>a.id!==artId);
+  delete contents[artId]; delete changes[artId];
+  tryStore();
+  showToast("Tópico removido");
+  render();
+}
+
+function addArt(chId){
+  const ch=chapters.find(c=>c.id===chId);
+  const newId="art_"+Date.now();
+  ch.arts.push({id:newId, title:"Novo tópico", body:"<p>Escreva o conteúdo aqui.</p>"});
+  openCh[chId]=true;
+  openArts[newId]=true;
+  openEdits[newId]=true;
+  tryStore();
+  render();
+  setTimeout(()=>{
+    const el=document.getElementById("ti-"+newId);
+    if(el)el.focus();
+  },100);
+}
+
+function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),2200)}
 
 function render(){
-  // update date
   const now=new Date();
   document.getElementById("hdate").textContent=`Versão em ${now.toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"})}`;
 
@@ -238,16 +311,28 @@ function render(){
       </button>
       <div class="ch-body${chOpen?" on":""}">`;
 
-    ch.arts.forEach(a=>{
+    ch.arts.forEach((a, idx)=>{
       const isOpen=openArts[a.id], isEd=openEdits[a.id];
       const hist=gh(a.id), hasH=hist.length>0;
+      const isDel=confirmDel[a.id];
+      const bodyText=gc(a.id,a.body).replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim();
       html+=`<div class="art">
         <button class="art-toggle" onclick="togArt('${a.id}')">
           <span class="art-sym">§</span>
           <span class="art-ttl">${a.title}</span>
           <span class="art-meta">
             ${hasH?'<span class="upd">✦</span>':""}
-            ${editMode?`<span class="edbtn" onclick="event.stopPropagation();togEd('${a.id}')">${isEd?"✕":"✏️"}</span>`:""}
+            ${editMode?`
+              <span class="move-btns">
+                ${idx>0?`<span class="mvbtn" onclick="event.stopPropagation();moveArt('${ch.id}','${a.id}',-1)" title="Mover para cima">↑</span>`:'<span class="mvbtn dis">↑</span>'}
+                ${idx<ch.arts.length-1?`<span class="mvbtn" onclick="event.stopPropagation();moveArt('${ch.id}','${a.id}',1)" title="Mover para baixo">↓</span>`:'<span class="mvbtn dis">↓</span>'}
+              </span>
+              <span class="edbtn" onclick="event.stopPropagation();togEd('${a.id}')">${isEd?"✕":"✏️"}</span>
+              ${isDel
+                ? `<span class="delbtn confirm" onclick="event.stopPropagation();delArt('${ch.id}','${a.id}')">Confirmar exclusão</span><span class="edbtn" onclick="event.stopPropagation();confirmDel['${a.id}']=false;render()">✕</span>`
+                : `<span class="delbtn" onclick="event.stopPropagation();delArt('${ch.id}','${a.id}')">🗑</span>`
+              }
+            `:""}
             <span class="art-chev${isOpen?" on":""}">▶</span>
           </span>
         </button>
@@ -255,8 +340,10 @@ function render(){
           <div id="cn-${a.id}">${gc(a.id,a.body)}</div>
           ${showHist&&hasH?`<div class="hist-bar"><div class="hist-ttl">📋 Histórico</div>${hist.map(e=>`<div class="hist-row"><span class="hist-dt">${e.d}</span><span class="hist-tx">${e.n}</span><span class="hist-au">${e.a}</span></div>`).join("")}</div>`:""}
           ${editMode?`<div class="ed-area${isEd?" on":""}">
-            <div class="ed-lbl">Editar conteúdo</div>
-            <textarea class="ed-ta" id="ta-${a.id}">${gc(a.id,a.body).replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim()}</textarea>
+            <div class="ed-lbl">Título</div>
+            <input class="ed-note" id="ti-${a.id}" value="${a.title.replace(/"/g,'&quot;')}" placeholder="Título do tópico" style="margin-bottom:8px" />
+            <div class="ed-lbl">Conteúdo</div>
+            <textarea class="ed-ta" id="ta-${a.id}">${bodyText}</textarea>
             <input class="ed-note" id="nt-${a.id}" placeholder="Motivo da alteração" />
             <div class="ed-acts">
               <button class="bcnl" onclick="canEd('${a.id}')">Cancelar</button>
@@ -266,6 +353,12 @@ function render(){
         </div>
       </div>`;
     });
+
+    if(editMode){
+      html+=`<div style="padding:10px 18px;border-top:1px solid var(--border)">
+        <button onclick="addArt('${ch.id}')" style="background:var(--gold-dim);border:1px dashed var(--gold);border-radius:6px;color:var(--gold);font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.08em;padding:7px 16px;cursor:pointer;width:100%">+ Novo tópico</button>
+      </div>`;
+    }
 
     html+=`</div></div>`;
   });
