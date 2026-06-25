@@ -101,6 +101,25 @@ header{background:linear-gradient(135deg,#c0405a,#d4607a 60%,#e07a90);padding:40
 .intro-body{display:none;padding:2px 14px 14px;font-family:'Crimson Pro',serif;font-size:.93rem;line-height:1.72;color:var(--text)}
 .intro-body.on{display:block}
 .intro-body p{margin-bottom:.45rem}
+.art-preview{font-family:'Crimson Pro',serif;font-size:.82rem;color:var(--text-dim);line-height:1.5;padding:0 14px 10px 36px;font-style:italic}
+.sumario{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden}
+.sum-ch{padding:12px 14px 4px;display:flex;align-items:center;gap:8px;cursor:pointer}
+.sum-ch:hover .sum-ch-title{color:var(--gold)}
+.sum-ch-icon{font-size:1rem;flex-shrink:0}
+.sum-ch-title{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:600;color:var(--text);transition:.15s}
+.sum-ch-lbl{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-left:4px}
+.sum-arts{padding:0 14px 10px 14px}
+.sum-art{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);cursor:pointer;align-items:flex-start}
+.sum-art:last-child{border-bottom:none}
+.sum-art:hover .sum-art-title{color:var(--gold)}
+.sum-art-sym{font-family:'Cinzel',serif;font-size:.58rem;color:var(--gold);flex-shrink:0;padding-top:3px}
+.sum-art-inner{flex:1}
+.sum-art-title{font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;color:var(--text);transition:.15s}
+.sum-art-text{font-family:'Crimson Pro',serif;font-size:.82rem;color:var(--text-dim);line-height:1.5;margin-top:1px}
+.ch-resumo{font-family:'Crimson Pro',serif;font-size:.9rem;line-height:1.7;color:var(--text);padding:10px 16px 14px;border-bottom:1px solid var(--border);background:rgba(196,57,107,.03)}
+.edit-highlight{background:linear-gradient(135deg,rgba(196,160,0,.13),rgba(196,160,0,.07));border-left:3px solid #c8a000;border-radius:0 6px 6px 0;padding:2px 8px;cursor:help;transition:background .3s}
+.edit-highlight:hover .edit-tooltip,.edit-highlight:focus .edit-tooltip{display:block}
+.edit-tooltip{display:none;position:absolute;background:#2a1a22;color:#fff8e0;font-family:'DM Sans',sans-serif;font-size:.7rem;padding:4px 10px;border-radius:5px;white-space:nowrap;z-index:50;margin-top:4px;pointer-events:none}
 .ch-move{display:flex;gap:3px;align-items:center;flex-shrink:0}
 .mvbtn{background:none;border:1px solid var(--border);border-radius:4px;color:var(--text-dim);font-size:.68rem;padding:1px 5px;cursor:pointer;line-height:1.4;transition:.15s}
 .mvbtn:hover{border-color:var(--gold);color:var(--gold)}
@@ -145,6 +164,19 @@ header{background:linear-gradient(135deg,#c0405a,#d4607a 60%,#e07a90);padding:40
 <script>
 const AUTHOR="Anna Paula";
 let introOpen=false;
+let editResumo={};
+function saveResumo(chId){
+  const val=(document.getElementById("res-"+chId).value||"").trim();
+  resumos[chId]=val;
+  try{
+    const saved=JSON.parse(localStorage.getItem("bdl_resumos")||"{}");
+    saved[chId]=val;
+    localStorage.setItem("bdl_resumos",JSON.stringify(saved));
+  }catch(e){}
+  editResumo[chId]=false;
+  showToast("✦ Resumo salvo");
+  render();
+}
 function togIntro(){
   introOpen=!introOpen;
   document.getElementById("intro-body").classList.toggle("on",introOpen);
@@ -161,10 +193,11 @@ function moveCh(chId, dir){
 
 const chapters=[
 {id:"hierarquia",icon:"🌳",lbl:"Hierarquia",title:"Hierarquia da Casa",arts:[
+{id:"h0",title:"A trajetória do filho de fé",body:`<p>Todo filho de fé passa por etapas. Não existe atalho, não existe comparação — cada um está no seu tempo, e o tempo de cada um é exatamente o que precisa ser.</p><p><strong>Chegando:</strong> o momento de criar raízes. De respirar, observar, aprender com silêncio. De deixar as mais velhas segurarem o que ainda não é seu pra segurar. É o momento mais importante — porque é aqui que a base se forma.</p><p><strong>Em caminhada:</strong> os fundamentos já estão estabelecidos. O desenvolvimento segue, agora com mais autonomia, mais diálogo com os próprios guias. Já se sabe quando ensinar e quando perguntar.</p><p><strong>Com tempo de casa:</strong> liberdade conquistada com fundamento. Autoridade para orientar, corrigir e amparar. Não por hierarquia de ego — por responsabilidade e confiança construída ao longo do caminho.</p><div class="tip">Onde você está agora é exatamente onde você precisa estar. O melhor momento sempre vai ser o agora.</div>`},
 {id:"h1",title:"Nossas mais velhas",body:`<p>Nossas queridas mais velhas da casa, <strong>Vanessa, Thali, Jaque e Márcia</strong>. São médiuns já experientes, com tempo de trabalho, e autonomia e autoridade para corrigir e orientar. São médiuns de confiança, que sempre prezam pelo melhor da casa e das suas irmãs, e já tem a bagagem necessária para iniciar desenvolvimento nas sessões, dar orientações de acordo com a própria mediunidade e fundamento, alinhadas com os trabalhos da casa e de seus próprios guias.</p><p>Seguem aprendendo, se desenvolvendo a cada dia, agora, cada vez mais com os seus próprios guias, fundamentos feitos, obrigações firmadas, médiuns de confiança que em segurança exploram e vivem a espiritualidade com maior autonomia, pois suas bases estão firmes e bem amparadas. Seus guias são reconhecidos, autorizados, e atuam conforme precisam.</p>`},
 {id:"h2",title:"As filhas em desenvolvimento",body:`<p><strong>Anne, Tassi, Brenda</strong> são nossas filhas com bagagem de terreiro, que seguem uma caminhada de aprendizado e ainda vivem a beleza do desenvolvimento em seu descobrimento, entendimento, e aprendizado com os próprios guias. São médiuns em diferentes momentos da caminhada, mas que estão alinhadas com a doutrina da casa, sabem quando ensinar e quando pedir ajuda, de forma mais cautelosa, já possuem doutrinas e fundamentos bem estabelecidos.</p><p>Trazem a maturidade que só o tempo pode nos oferecer. Elas tem autoridade para auxiliar, e ensinar as doutrinas e fundamentos que já aprenderam dentro do terreiro, já tem tempo de casa para saber até onde dá pra ir, e quando perguntar. Suas bases estão cada dia mais sólidas, se fortalecendo, e dando continuidade no desenvolvimento na relação com os seus próprios guias, se fortalecendo, crescendo, e cada dia mais maduras na espiritualidade.</p>`},
 {id:"h3",title:"As que estão chegando",body:`<p>E chegamos nas nossas babys! Nossas sementinhas que estão florescendo, <strong>Vi, Manu, Ju, Gabi, Nicole e Stephani</strong>! Nossas filhas mais novas, que estão aprendendo, conhecendo, explorando a espiritualidade com os olhos de uma criança que aprende a cada dia uma coisa nova. Estão no momento mais importante de suas caminhadas, momento de se fortalecer, de criar raízes, bases sólidas e fortes para que possam crescer frondosas árvores que um dia irão ajudar aquelas que ainda virão.</p><p>Aqui, o olhar é de aprendizado, de respirar, de silêncio, como dizem os mais velhos, é o momento de sentar para aprender. Busquem ajuda das irmãs de vocês, aquelas que são mais velhas, que já tem experiência de terreiro, que já tem mais conhecimento. Vocês estão no momento de ser cuidadas, de serem orientadas, aproveitem, aproveitem cada segundo, cada instante, deixem para as mais velhas as responsabilidades de desenvolvimento, de segurança, de cuidado. Pois elas sabem o que estão fazendo, e tem o preparo e firmeza pra auxiliar sem se prejudicar, ou prejudicar vocês.</p><div class="tip">Vocês estão vivendo o melhor momento da espiritualidade de vocês, todas. Da Stephani até a Vanessa. Porque, por mais clichê que seja, o melhor momento sempre vai ser o agora. Então aproveitem, vivam cada etapa com orgulho, com amor, com carinho. Respeitem o momento que estão vivendo, respeitem a espiritualidade e a mediunidade das suas irmãs.</div>`},
-{id:"h4",title:"Autoridade e orientação",body:`<p>Se alguém está dizendo pra você não fazer algo, é porque está te ajudando.</p><p>Quem está desincorporado deve estar disponível para ajudar quem está cambonando — alcançar um fósforo, proteger um guia, estar com os olhos abertos.</p><p>A fé ela nos pede uma coisa curiosa, confiar antes, entender depois. Quando bem trilhada, de forma respeitosa, com segurança, a fé se torna um salto de confiança, não sabemos quem está chegando, mas precisamos confiar para que chegue. E lembrem sempre, somos todos universos, somos todos ancestralidade, caminhos, natureza. E cabe a nós, explorar a nossa história.</p>`}
+{id:"h4",title:"Autoridade e orientação",body:`<p>Se alguém está dizendo pra você não fazer algo, é porque está te ajudando.</p><p>A hierarquia existe para organizar e proteger — não para diminuir ninguém. Quem está numa etapa mais avançada não é melhor do que quem está chegando, e quem está chegando não precisa se sentir menos por estar no início. Todas as etapas têm valor, todas merecem respeito. A mais velha respeita o processo de quem está crescendo. Quem está crescendo respeita a experiência de quem já caminhou.</p><p>Quem está desincorporado deve estar disponível para ajudar quem está cambonando — alcançar um fósforo, proteger um guia, estar com os olhos abertos.</p><p>A fé ela nos pede uma coisa curiosa, confiar antes, entender depois. Quando bem trilhada, de forma respeitosa, com segurança, a fé se torna um salto de confiança, não sabemos quem está chegando, mas precisamos confiar para que chegue. E lembrem sempre, somos todos universos, somos todos ancestralidade, caminhos, natureza. E cabe a nós, explorar a nossa história.</p>`}
 ]},
 {id:"conduta",icon:"🤍",lbl:"Conduta",title:"Convivência e Ética",arts:[
 {id:"c1",title:"Respeito e convivência",body:`<p>Vocês são a cara do terreiro. Vida pessoal fica do lado de fora.</p><p>Não gosta de alguém? Aqui dentro: "boa noite" e "bom dia". O mínimo de educação é inegociável.</p><p>Cuidado com brincadeiras que perdem a mão, com piadas que machucam e se escondem atrás do "é só brincadeira". Cuidado com insistir quando a pessoa já deu sinal que não quer, com não ler o desconforto do outro, com não perceber quando foi longe demais. Caras e bocas, comentários, deboche — não têm espaço aqui. Não deixe que o fato de não gostar de alguém faça essa pessoa se sentir desconfortável num lugar que ela veio buscar acolhimento.</p><p>Porque as pessoas não estão vindo aqui pra falar com a gente. Elas não estão vindo aqui porque gostam da nossa cara. Elas estão vindo porque confiam que aqui tem médiuns aptos e preparados para fazer o intermédio da ancestralidade com a Terra. Estão procurando ajuda, um conselho, um abraço, um acolhimento. E podem ter certeza que não é pra chegar num terreiro e ser destratado, debochado, ver irmãos de santo fazendo caras e bocas um pro outro.</p><p>As pessoas observam. As pessoas percebem. Elas vão ver se vocês estão rindo de alguém, se estão de deboche, se estão menosprezando, se estão fazendo piada. É esse tipo de coisa que as pessoas olham quando estão conhecendo uma casa. E o nosso terreiro não é isso.</p><p>Então cuide para não se deixar levar pela empolgação. Mantenha o respeito, mantenha uma boa conduta — dentro e fora do salão.</p>`},
@@ -220,6 +253,7 @@ let openCh={}, openArts={}, openEdits={}, confirmDel={};
 let changes, contents, artOrder;
 try{changes=JSON.parse(localStorage.getItem("bdl_ch")||"{}")}catch(e){changes={}}
 try{contents=JSON.parse(localStorage.getItem("bdl_co")||"{}")}catch(e){contents={}}
+try{const sr=JSON.parse(localStorage.getItem("bdl_resumos")||"{}");Object.assign(resumos,sr);}catch(e){}
 try{artOrder=JSON.parse(localStorage.getItem("bdl_order")||"null")}catch(e){artOrder=null}
 
 // Aplicar ordem salva
@@ -290,8 +324,9 @@ function savEd(id){
   const no=(document.getElementById("nt-"+id).value||"").trim()||"Atualizado";
   const now=new Date();
   const d=`${String(now.getDate()).padStart(2,"0")}/${String(now.getMonth()+1).padStart(2,"0")}/${now.getFullYear()}`;
+  const h=now.getHours(), m=now.getMinutes();
   if(!changes[id])changes[id]=[];
-  changes[id].unshift({d,n:no,a:AUTHOR});
+  changes[id].unshift({d,h,m,n:no,a:AUTHOR});
   contents[id]=w; tryStore();
   openEdits[id]=false;
   showToast("✦ Alteração salva");
@@ -339,6 +374,8 @@ function addArt(chId){
 
 function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),2200)}
 
+const resumos={"hierarquia": "A casa se organiza em etapas — não por hierarquia de ego, mas por tempo de caminhada e fundamentos construídos. Quem está chegando está no momento mais importante: criar raízes. Quem já caminhou mais tem autonomia e responsabilidade para amparar. Todas as etapas merecem respeito, nos dois sentidos. Se alguém mais experiente orienta, é porque está cuidando — não mandando.", "conduta": "O terreiro pede que a gente deixe a vida pessoal do lado de fora e entre com o melhor de si. Isso inclui tratar todos com educação, mesmo quem não é próximo. Fofoca destrói corrente — o que não serve, a gente se afasta sem precisar fazer disso um assunto. O que acontece na sessão é sagrado e fica ali. Conexões, amizades e o amor são sempre bem-vindos quando nascem naturalmente. As pessoas que estão aqui vieram buscar espiritualidade, e não relações carnais e levianas, e esse motivo merece ser respeitado. Não é julgamento sobre o que cada um vive fora daqui, é sobre entender que a relação entre irmãos de santo é outra, e são vínculos de ervas e sangue feitos em axé, é uma família, e devemos nos respeitar como tal onde estivermos.", "sessao": "A concentração começa quando a gente chega, não quando a sessão abre. Dentro da corrente, atenção nos guias o tempo inteiro — conversas paralelas têm hora e lugar, e não é durante os trabalhos. A cambone segue orientações diretas e não deve ser questionada. O espaço é de todos e precisa ser cuidado por todos.", "materiais": "Todo material dos guias precisa de identificação e vai direto à mesa da cambonagem. Elementos como cores, quartinhas e imagens são orientados — não escolha livre. O que se conquista com o tempo tem seu valor justamente por isso: chega na hora certa, quando o guia e o médium já têm a firmeza necessária.", "preceito": "Véspera e dia de sessão são períodos de cuidado com o próprio corpo e energia — o trabalho mediúnico exige que a gente esteja bem para receber e transmitir. Não é rigidez, é respeito com a própria espiritualidade e com os irmãos. Fora do terreiro, ser umbandista é um estilo de vida, não só o dia de gira.", "financeiro": "A mensalidade é um compromisso coletivo — não uma obrigação fria, mas a forma de cada um contribuir para que a casa continue funcionando. Arrecadações extras são sempre voluntárias. A obrigação de agosto é coletiva porque a firmeza de um ampara o outro. Tudo é transparente — nenhum valor fica sem prestação de contas.", "comunicacao": "Quando algo precisa de interferência, precisa ser contado com clareza e sem o peso do segredo — senão é só uma transferência de carga. A mãe de santo tem responsabilidade de resolver, e vai resolver. Questões de desenvolvimento, elementos e materiais: sempre vem antes da decisão tomada.", "administracao": "O Conselho do Oxé existe para garantir que decisões difíceis sejam tomadas com mais de um olhar. São pessoas de confiança da mãe de santo, acionadas para mediar conflitos e trazer imparcialidade. A palavra final é sempre da Liderança Espiritual — mas ouvir outros olhares faz parte de como essa casa se conduz."};
+
 function render(){
   const now=new Date();
   document.getElementById("hdate").textContent=`Versão em ${now.toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"})}`;
@@ -348,25 +385,57 @@ function render(){
     const chOpen=openCh[ch.id];
     const chIdx=chapters.indexOf(ch);
     html+=`<div class="chapter">
-      <button class="ch-toggle" onclick="togCh('${ch.id}')">
+      <div class="ch-toggle" style="cursor:default">
         <span class="ch-icon">${ch.icon}</span>
         <span class="ch-texts">
           <span class="ch-title">${ch.title}</span>
           <span class="ch-lbl">${ch.lbl}</span>
         </span>
-        ${editMode?`<span class="ch-move" onclick="event.stopPropagation()">
+        ${editMode?`<span class="ch-move">
           <span class="mvbtn${chIdx===0?' dis':''}" onclick="moveCh('${ch.id}',-1)">↑</span>
           <span class="mvbtn${chIdx===chapters.length-1?' dis':''}" onclick="moveCh('${ch.id}',1)">↓</span>
         </span>`:''}
-        <span class="ch-chev${chOpen?" on":""}">▶</span>
-      </button>
-      <div class="ch-body${chOpen?" on":""}">`;
+      </div>
+      <div class="ch-body on">
+      ${resumos[ch.id]||editMode?`<div class="ch-resumo" style="position:relative">
+        ${editResumo[ch.id]?`
+          <div style="padding:4px 0 8px">
+            <div class="ed-lbl" style="margin-bottom:4px">Resumo do capítulo</div>
+            <textarea class="ed-ta" id="res-${ch.id}" style="min-height:70px">${resumos[ch.id]||""}</textarea>
+            <div class="ed-acts" style="margin-top:6px">
+              <button class="bcnl" onclick="editResumo['${ch.id}']=false;render()">Cancelar</button>
+              <button class="bsav" onclick="saveResumo('${ch.id}')">Salvar ✓</button>
+            </div>
+          </div>
+        `:`
+          <span>${resumos[ch.id]||""}</span>
+          ${editMode?`<span class="edbtn" style="margin-left:8px;vertical-align:middle" onclick="editResumo['${ch.id}']=true;render()">✏️</span>`:""}
+        `}
+      </div>`:""}`;
 
     ch.arts.forEach((a, idx)=>{
       const isOpen=openArts[a.id], isEd=openEdits[a.id];
       const hist=gh(a.id), hasH=hist.length>0;
       const isDel=confirmDel[a.id];
       const bodyText=gc(a.id,a.body).replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim();
+      // gerar preview: texto plano sem html, max 120 chars
+      const rawPreview=gc(a.id,a.body).replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim();
+      const preview=rawPreview.length>120?rawPreview.slice(0,120).replace(/\s\S*$/,"")+"…":rawPreview;
+      // verificar se edição é recente (últimos 5 min)
+      const lastEdit=hist.length>0?hist[0]:null;
+      const isRecent=lastEdit&&(()=>{
+        try{
+          const parts=lastEdit.d.split("/");
+          const dt=new Date(parts[2],parts[1]-1,parts[0],lastEdit.h||0,lastEdit.m||0);
+          return (Date.now()-dt.getTime())<5*60*1000;
+        }catch(e){return false;}
+      })();
+      // renderizar conteúdo com destaque dourado se recente
+      let bodyHtml=gc(a.id,a.body);
+      if(isRecent&&lastEdit){
+        const tooltip=`Atualizado em ${lastEdit.d}${lastEdit.h!==undefined?' às '+String(lastEdit.h).padStart(2,'0')+':'+String(lastEdit.m).padStart(2,'0'):''}`;
+        bodyHtml=`<span class="edit-highlight" title="${tooltip}" style="position:relative;display:block">${bodyHtml}<span class="edit-tooltip">${tooltip}</span></span>`;
+      }
       html+=`<div class="art">
         <button class="art-toggle" onclick="togArt('${a.id}')">
           <span class="art-sym">§</span>
@@ -388,7 +457,7 @@ function render(){
           </span>
         </button>
         <div class="art-body${isOpen?" on":""}">
-          <div id="cn-${a.id}">${gc(a.id,a.body)}</div>
+          <div id="cn-${a.id}">${bodyHtml}</div>
           ${showHist&&hasH?`<div class="hist-bar"><div class="hist-ttl">📋 Histórico</div>${hist.map(e=>`<div class="hist-row"><span class="hist-dt">${e.d}</span><span class="hist-tx">${e.n}</span><span class="hist-au">${e.a}</span></div>`).join("")}</div>`:""}
           ${editMode?`<div class="ed-area${isEd?" on":""}">
             <div class="ed-lbl">Título</div>
